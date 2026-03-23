@@ -188,3 +188,6 @@ export type {
 } from "./Popover/Popover";
 export { Toast, toast, toastRootVariants } from "./Toast/Toast";
 export type { ToastProps } from "./Toast/Toast";
+
+export { TreeView } from "./TreeView/TreeView";
+export type { TreeViewNode, TreeViewNodeId, TreeViewProps } from "./TreeView/TreeView";

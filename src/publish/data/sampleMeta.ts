@@ -255,6 +255,14 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "treeView",
+    title: "TreeView",
+    path: "/guide/tree-view",
+    description:
+      "커스텀 TreeView 컴포넌트를 확인합니다.",
+    section: "components",
+  },
+  {
     id: "textList",
     title: "TextList",
     path: "/guide/text-list",

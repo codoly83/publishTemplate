@@ -43,6 +43,7 @@ import SamplePageScrollSpy from "@/publish/sample/samplePageScrollSpy";
 import SampleScrollTopButtonPage from "@/publish/sample/sampleScrollTopButton";
 import SampleSwiperPage from "@/publish/sample/sampleSwiper";
 import SampleTextListPage from "@/publish/sample/sampleTextList";
+import SampleTreeViewPage from "@/publish/sample/sampleTreeView";
 import { publishGuideNavItems } from "@/publish/data/sampleMeta";
 import { RouteTitleSync } from "./RouteTitleSync";
 
@@ -245,6 +246,11 @@ export const routes = [
         path: "swiper",
         element: <SampleSwiperPage />,
         handle: { title: getGuideChildTitle("swiper") },
+      },
+      {
+        path: "tree-view",
+        element: <SampleTreeViewPage />,
+        handle: { title: getGuideChildTitle("tree-view") },
       },
       {
         path: "text-list",
