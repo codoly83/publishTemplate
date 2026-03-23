@@ -14,8 +14,11 @@
   line-height: 20px;
   text-align: left;
   outline: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease,
-    background-color 150ms ease, color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
 
   &:hover {
     border-color: var(--btn-g);
@@ -91,6 +94,20 @@
       }
     }
   }
+}
+
+.triggerRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.resetButton {
+  min-width: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 .triggerSizeDefault {

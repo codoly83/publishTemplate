@@ -1,4 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import { Button } from "@/components/ui/Button/Button";
+import { Icon } from "@/components/ui/Icon/Icon";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { Select as SelectPrimitive } from "radix-ui";
 import * as React from "react";
@@ -40,8 +42,94 @@ type SelectScrollDownButtonProps = React.ComponentProps<
   typeof SelectPrimitive.ScrollDownButton
 >;
 
-function Select({ ...props }: SelectProps) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />;
+type SelectResetProps = {
+  /** 선택 값이 있을 때만 트리거 우측에 리셋 버튼을 표시 */
+  resetEnabled?: boolean;
+  /** 리셋 시 값. 기본값은 `undefined`(placeholder 표시) */
+  resetValue?: string | undefined;
+  /** 리셋 클릭 콜백 (리셋될 값 전달) */
+  onResetValue?: (nextValue: string | undefined) => void;
+  /** 접근성용 라벨 */
+  resetLabel?: string;
+};
+
+type SelectWithResetProps = SelectProps & SelectResetProps;
+
+type SelectResetContextValue = {
+  resetEnabled: boolean;
+  hasValue: boolean;
+  resetValue: string | undefined;
+  disabled?: boolean;
+  resetLabel: string;
+  reset: () => void;
+};
+
+const SelectResetContext =
+  React.createContext<SelectResetContextValue | null>(null);
+
+function useSelectResetContext() {
+  return React.useContext(SelectResetContext);
+}
+
+function Select({
+  resetEnabled = false,
+  resetValue = undefined,
+  onResetValue,
+  resetLabel = "리셋",
+  ...props
+}: SelectWithResetProps) {
+  const { value: valueProp, defaultValue, onValueChange, disabled, ...rootProps } =
+    props;
+
+  const isControlled = valueProp !== undefined;
+  const [internalValue, setInternalValue] = React.useState<
+    string | undefined
+  >(() => defaultValue);
+
+  React.useEffect(() => {
+    if (isControlled) return;
+    setInternalValue(defaultValue);
+  }, [defaultValue, isControlled]);
+
+  const resolvedValue = isControlled ? valueProp : internalValue;
+
+  const handleValueChange = React.useCallback(
+    (next: string) => {
+      if (!isControlled) setInternalValue(next);
+      onValueChange?.(next);
+    },
+    [isControlled, onValueChange]
+  );
+
+  const handleReset = React.useCallback(() => {
+    // clear => placeholder 표시를 위해 default는 undefined.
+    if (!isControlled) setInternalValue(resetValue);
+    onResetValue?.(resetValue);
+    if (resetValue !== undefined) onValueChange?.(resetValue);
+  }, [isControlled, onResetValue, onValueChange, resetValue]);
+
+  const hasValue = resolvedValue != null && resolvedValue !== "";
+
+  const ctxValue: SelectResetContextValue = {
+    resetEnabled,
+    hasValue,
+    resetValue,
+    disabled,
+    resetLabel,
+    reset: handleReset,
+  };
+
+  return (
+    <SelectResetContext.Provider value={ctxValue}>
+      <SelectPrimitive.Root
+        data-slot="select"
+        {...rootProps}
+        disabled={disabled}
+        value={resolvedValue}
+        onValueChange={handleValueChange}
+      />
+    </SelectResetContext.Provider>
+  );
 }
 
 function SelectGroup({ ...props }: SelectGroupProps) {
@@ -63,8 +151,15 @@ function SelectTrigger({
   size,
   variant,
   children,
+  disabled: triggerDisabled,
   ...props
 }: SelectTriggerProps) {
+  const ctx = useSelectResetContext();
+  const effectiveDisabled = triggerDisabled ?? ctx?.disabled;
+  const showResetButton = Boolean(
+    ctx?.resetEnabled && ctx?.hasValue && !effectiveDisabled
+  );
+
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
@@ -73,9 +168,33 @@ function SelectTrigger({
       {...props}
     >
       {children}
-      <SelectPrimitive.Icon className={styles.triggerIcon}>
-        <IoMdArrowDropdown />
-      </SelectPrimitive.Icon>
+      <span className={styles.triggerRight} data-slot="select-trigger-right">
+        {showResetButton ? (
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
+            shape="square"
+            color="gray"
+            aria-label={ctx?.resetLabel}
+            className={styles.resetButton}
+            onPointerDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              ctx?.reset();
+            }}
+          >
+            <Icon name="btn-close" size={16} />
+          </Button>
+        ) : null}
+        <SelectPrimitive.Icon className={styles.triggerIcon}>
+          <IoMdArrowDropdown />
+        </SelectPrimitive.Icon>
+      </span>
     </SelectPrimitive.Trigger>
   );
 }

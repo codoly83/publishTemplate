@@ -160,6 +160,80 @@ function SampleSelectPage() {
         </GuideBox>
 
         <GuideBox
+          title="resetEnabled"
+          description="선택 값이 있을 때만 트리거 우측에 리셋 버튼을 표시합니다."
+          code={`
+<div className="grid max-w-3xl gap-4 md:grid-cols-2">
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">value exists</div>
+    <Select resetEnabled defaultValue="reviewing">
+      <SelectTrigger>
+        <SelectValue placeholder="상태를 선택하세요" />
+      </SelectTrigger>
+      <SelectContent>
+        {statusOptions.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  </div>
+
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">empty (reset hidden)</div>
+    <Select resetEnabled>
+      <SelectTrigger>
+        <SelectValue placeholder="상태를 선택하세요" />
+      </SelectTrigger>
+      <SelectContent>
+        {statusOptions.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  </div>
+</div>
+          `}
+        >
+          <div className="grid max-w-3xl gap-4 md:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">value exists</div>
+              <Select resetEnabled defaultValue="reviewing">
+                <SelectTrigger>
+                  <SelectValue placeholder="상태를 선택하세요" />
+                </SelectTrigger>
+                <SelectContent>
+                  {statusOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">empty (reset hidden)</div>
+              <Select resetEnabled>
+                <SelectTrigger>
+                  <SelectValue placeholder="상태를 선택하세요" />
+                </SelectTrigger>
+                <SelectContent>
+                  {statusOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </GuideBox>
+
+        <GuideBox
           title="SelectSimple (라벨 + options 한 줄)"
           description="`label`과 `options`만 넘기면 트리거·SelectContent·SelectItem을 내부에서 구성합니다. Root의 value·defaultValue·onValueChange·disabled 등은 그대로 전달됩니다."
           code={`

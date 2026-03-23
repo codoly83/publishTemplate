@@ -26,6 +26,14 @@ type DatePickerProps = Omit<
   value?: Date;
   defaultValue?: Date;
   onValueChange?: (value: Date | undefined) => void;
+  /**
+   * 선택된 값이 있을 때만 트리거 우측에 리셋 버튼을 표시합니다.
+   * (reset click 시 값은 `resetValue`로 설정, 기본은 `undefined`로 초기화)
+   */
+  resetEnabled?: boolean;
+  resetValue?: Date | undefined;
+  onResetValue?: (nextValue: Date | undefined) => void;
+  resetLabel?: string;
   placeholder?: string;
   formatString?: string;
   name?: string;
@@ -128,13 +136,17 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
       formatString = "yyyy.MM.dd",
       name,
       onValueChange,
+      resetEnabled = false,
+      resetValue = undefined,
+      onResetValue,
+      resetLabel = "선택 해제",
       placeholder = "날짜를 선택하세요",
       side = "bottom",
       value,
       variant = "default",
       ...props
     },
-    ref
+    ref,
   ) => {
     const isControlled = value !== undefined;
     const [open, setOpen] = React.useState(false);
@@ -156,8 +168,16 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
         onValueChange?.(nextValue);
         setOpen(false);
       },
-      [isControlled, onValueChange]
+      [isControlled, onValueChange],
     );
+
+    const handleReset = React.useCallback(() => {
+      handleSelect(resetValue);
+      onResetValue?.(resetValue);
+    }, [handleSelect, onResetValue, resetValue]);
+
+    const showResetButton =
+      Boolean(resetEnabled) && !!selectedDate && !disabled;
 
     return (
       <Popover.Root open={open} onOpenChange={setOpen}>
@@ -171,19 +191,46 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
             className={cn(
               styles.trigger,
               variant === "btnType" && styles.triggerBtnType,
-              className
+              className,
             )}
             disabled={disabled}
             {...props}
           >
             <span className={styles.triggerText}>{displayValue}</span>
-            {variant === "btnType" ? (
-              <span className={styles.triggerIconBtn}>
+            <span className={styles.rightActions}>
+              {showResetButton ? (
+                <span
+                  role="button"
+                  tabIndex={-1}
+                  data-slot="date-picker-reset"
+                  aria-label={resetLabel}
+                  className={styles.resetButton}
+                  onPointerDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleReset();
+                  }}
+                >
+                  <Icon
+                    name="btn-close"
+                    size={16}
+                    className={styles.resetIcon}
+                  />
+                </span>
+              ) : null}
+
+              {variant === "btnType" ? (
+                <span className={styles.triggerIconBtn}>
+                  <Icon name="calendar" className={styles.triggerIcon} />
+                </span>
+              ) : (
                 <Icon name="calendar" className={styles.triggerIcon} />
-              </span>
-            ) : (
-              <Icon name="calendar" className={styles.triggerIcon} />
-            )}
+              )}
+            </span>
           </button>
         </Popover.Trigger>
         {name ? <input type="hidden" name={name} value={hiddenValue} /> : null}
@@ -212,7 +259,7 @@ const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
         </Popover.Portal>
       </Popover.Root>
     );
-  }
+  },
 );
 
 DatePicker.displayName = "DatePicker";
@@ -265,7 +312,7 @@ const DateRangePicker = React.forwardRef<
       variant = "default",
       ...props
     },
-    ref
+    ref,
   ) => {
     const isControlled = value !== undefined;
     const [open, setOpen] = React.useState(false);
@@ -298,7 +345,7 @@ const DateRangePicker = React.forwardRef<
         }
         setOpen(nextOpen);
       },
-      [committedRange]
+      [committedRange],
     );
 
     // 달력 날짜 클릭: pending만 업데이트 (자동 닫힘 없음)
@@ -306,7 +353,7 @@ const DateRangePicker = React.forwardRef<
       (nextValue: DateRange | undefined) => {
         setPendingRange(nextValue);
       },
-      []
+      [],
     );
 
     // 선택 취소: pending 초기화
@@ -335,7 +382,7 @@ const DateRangePicker = React.forwardRef<
             className={cn(
               styles.trigger,
               variant === "btnType" && styles.triggerBtnType,
-              className
+              className,
             )}
             disabled={disabled}
             {...props}
@@ -394,11 +441,194 @@ const DateRangePicker = React.forwardRef<
         </Popover.Portal>
       </Popover.Root>
     );
-  }
+  },
 );
 
 DateRangePicker.displayName = "DateRangePicker";
 
-export { DatePicker, DateRangePicker };
+// ─── DateRangePicker (2 inputs) ─────────────────────────────────────────────
+
+type DateRangeTwoPickersProps = Omit<
+  React.ComponentPropsWithoutRef<"div">,
+  "children" | "value" | "defaultValue"
+> & {
+  value?: DateRange;
+  defaultValue?: DateRange;
+  onValueChange?: (value: DateRange | undefined) => void;
+  /** 시작일 placeholder */
+  startPlaceholder?: string;
+  /** 종료일 placeholder */
+  endPlaceholder?: string;
+  formatString?: string;
+  variant?: DatePickerVariant;
+  align?: "start" | "center" | "end";
+  side?: "top" | "right" | "bottom" | "left";
+  calendarProps?: Omit<
+    DayPickerProps,
+    "mode" | "selected" | "onSelect" | "locale"
+  >;
+  /**
+   * form hidden input name (선택)
+   * - `fromName`에 시작일을, `toName`에 종료일을 넣습니다.
+   */
+  fromName?: string;
+  toName?: string;
+};
+
+function isBefore(a: Date, b: Date): boolean {
+  return a.getTime() < b.getTime();
+}
+
+function mergeDisabledBeforeAfter(
+  base: DatePickerProps["calendarProps"] | undefined,
+  next: { before?: Date; after?: Date }
+): DayPickerProps["disabled"] {
+  const anyBase = base as any;
+  const baseDisabled = anyBase?.disabled as DayPickerProps["disabled"];
+
+  // matcher(함수/배열) 케이스는 보존하고, before/after 오버레이만 적용은 어려우니 그대로 둡니다.
+  if (
+    baseDisabled == null ||
+    typeof baseDisabled !== "object" ||
+    Array.isArray(baseDisabled)
+  ) {
+    return baseDisabled;
+  }
+
+  return {
+    ...baseDisabled,
+    ...next,
+  } as DayPickerProps["disabled"];
+}
+
+function DateRangePickerTwoPickers({
+  value,
+  defaultValue,
+  onValueChange,
+  startPlaceholder = "시작일",
+  endPlaceholder = "종료일",
+  formatString = "yyyy.MM.dd",
+  variant = "default",
+  align = "start",
+  side = "bottom",
+  calendarProps,
+  fromName,
+  toName,
+  className,
+  ...rest
+}: DateRangeTwoPickersProps) {
+  const isControlled = value !== undefined;
+  const [internalRange, setInternalRange] = React.useState<DateRange | undefined>(
+    defaultValue
+  );
+
+  const committed = isControlled ? value : internalRange;
+
+  const handleFromChange = React.useCallback(
+    (nextFrom: Date | undefined) => {
+      const committedBase = (committed ?? {}) as DateRange;
+      const nextRange: DateRange = {
+        ...committedBase,
+        from: nextFrom ?? undefined,
+        to:
+          nextFrom != null && committedBase?.to && isBefore(committedBase.to, nextFrom)
+            ? nextFrom
+            : committedBase?.to,
+      };
+
+      const next =
+        nextRange.from == null && nextRange.to == null ? undefined : nextRange;
+
+      if (!isControlled) setInternalRange(next);
+      onValueChange?.(next);
+    },
+    [committed, isControlled, onValueChange]
+  );
+
+  const handleToChange = React.useCallback(
+    (nextTo: Date | undefined) => {
+      const committedBase = (committed ?? {}) as DateRange;
+      const nextRange: DateRange = {
+        ...committedBase,
+        to: nextTo ?? undefined,
+        from:
+          nextTo != null && committedBase?.from && isBefore(nextTo, committedBase.from)
+            ? nextTo
+            : committedBase?.from,
+      };
+
+      const next =
+        nextRange.from == null && nextRange.to == null ? undefined : nextRange;
+
+      if (!isControlled) setInternalRange(next);
+      onValueChange?.(next);
+    },
+    [committed, isControlled, onValueChange]
+  );
+
+  const startDisabledAfter =
+    committed?.to != null ? committed.to : undefined;
+  const endDisabledBefore =
+    committed?.from != null ? committed.from : undefined;
+
+  const startCalendarProps = startDisabledAfter
+    ? {
+        ...calendarProps,
+        disabled: mergeDisabledBeforeAfter(calendarProps, {
+          after: startDisabledAfter,
+        }),
+      }
+    : calendarProps;
+
+  const endCalendarProps = endDisabledBefore
+    ? {
+        ...calendarProps,
+        disabled: mergeDisabledBeforeAfter(calendarProps, {
+          before: endDisabledBefore,
+        }),
+      }
+    : calendarProps;
+
+  return (
+    <div
+      data-slot="date-range-two-pickers"
+      className={cn("flex w-full min-w-0 gap-2", className)}
+      {...rest}
+    >
+      <div className="min-w-0 flex-1">
+        <DatePicker
+          variant={variant}
+          align={align}
+          side={side}
+          formatString={formatString}
+          placeholder={startPlaceholder}
+          value={committed?.from}
+          onValueChange={handleFromChange}
+          resetEnabled
+          calendarProps={startCalendarProps}
+          name={fromName}
+        />
+      </div>
+      <div className="min-w-0 flex-1">
+        <DatePicker
+          variant={variant}
+          align={align}
+          side={side}
+          formatString={formatString}
+          placeholder={endPlaceholder}
+          value={committed?.to}
+          onValueChange={handleToChange}
+          resetEnabled
+          calendarProps={endCalendarProps}
+          name={toName}
+        />
+      </div>
+    </div>
+  );
+}
+
+DateRangePickerTwoPickers.displayName = "DateRangePickerTwoPickers";
+
+export { DatePicker, DateRangePicker, DateRangePickerTwoPickers };
 export type { DateRange };
 export default DatePicker;

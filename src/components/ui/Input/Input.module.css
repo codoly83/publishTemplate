@@ -2,7 +2,6 @@
   width: 100%;
   min-width: 0;
   height: 36px;
-  padding: 9px 11px;
   border: 1px solid var(--line02);
   border-radius: 8px;
   background-color: var(--font-w);
@@ -10,30 +9,62 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  outline: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease,
-    background-color 150ms ease, color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
 
-  &::placeholder {
-    color: var(--font-lg);
-  }
-  &:hover {
+  display: flex;
+  align-items: center;
+
+  &:has(.inputControl:hover) {
     border-color: var(--btn-g);
   }
 
-  &:focus-visible {
+  &:has(.inputControl:focus-visible) {
     border-color: var(--primary);
   }
 
-  &[aria-invalid="true"] {
+  &:has(.inputControl[aria-invalid="true"]) {
     border-color: var(--red);
   }
 
-  &:disabled {
+  &:has(.inputControl:disabled) {
     cursor: not-allowed;
     color: var(--font-b);
     background-color: var(--line01);
     border-color: var(--line02);
+  }
+}
+
+.inputControl {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 9px 11px;
+
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+
+  color: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
+  &::placeholder {
+    color: var(--font-lg);
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -51,7 +82,9 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  transition: border-color 150ms ease, box-shadow 150ms ease,
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
     background-color 150ms ease;
   &.typeBtnType {
     border: 0;
@@ -272,4 +305,21 @@
   padding-top: 12px;
   padding-bottom: 12px;
   resize: none;
+}
+
+.resetButton {
+  position: static;
+  flex: 0 0 auto;
+  margin: 0 8px;
+  /* 아이콘만 쓰는 버튼이라 공간을 최소화합니다. */
+  min-width: auto !important;
+  padding: 0 !important;
+}
+
+.inputGroupInnerWrapper {
+  /* InputGroup 내부에서 border/배경 라인을 중복으로 가지지 않게 하는 용도입니다. */
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
 }

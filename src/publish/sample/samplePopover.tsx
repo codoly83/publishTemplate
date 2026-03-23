@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Button,
   POPOVER_PLACEMENTS,
@@ -166,7 +165,7 @@ import {
         이 영역 안에 열기
       </Button>
     </PopoverTrigger>
-    <PopoverContent container={document.body}>
+    <PopoverContent container="#aaa">
       <PopoverHeader>
         <PopoverTitle>Portal 대상 영역 내부</PopoverTitle>
         <PopoverDescription>
@@ -183,7 +182,7 @@ import {
 </div>
           `}
         >
-          <div className="flex max-w-4xl flex-col gap-4">
+          <div className="flex max-w-4xl flex-col gap-4" id="aaa">
             <div className="relative min-h-48 overflow-auto rounded-xl border border-line02 bg-container p-4">
               <p className="mb-3 text-sm text-font-g">
                 아래 버튼의 Popover는 이 박스 DOM 안에만 Portal 됩니다.
@@ -194,7 +193,7 @@ import {
                     이 영역 안에 열기
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent container={document.body}>
+                <PopoverContent container="#aaa">
                   <PopoverHeader>
                     <PopoverTitle>Portal 대상 영역 내부</PopoverTitle>
                     <PopoverDescription>

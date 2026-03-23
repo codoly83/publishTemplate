@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.row {
+  position: relative;
+}
+
+/** 드래그 핸들에만 적용 권장 (모바일에서 스크롤과 구분) */
+.dragHandle {
+  touch-action: none;
+  cursor: grab;
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+}
+
+.rowDragging {
+  opacity: 0.65;
+  z-index: 1;
+}

@@ -1,0 +1,54 @@
+.list {
+  --text-list-gap: 0.5rem;
+  --text-list-col-gap: 0.5rem;
+  --text-list-font-size: 1rem;
+  --text-list-marker-size: 1rem;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--text-list-gap);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--text-list-col-gap);
+  align-items: flex-start;
+}
+
+.marker {
+  font-size: var(--text-list-marker-size);
+  line-height: 1.35;
+  font-weight: 600;
+  user-select: none;
+  padding-top: 0.1em;
+  white-space: pre;
+}
+
+.content {
+  font-size: var(--text-list-font-size);
+  line-height: 1.6;
+  min-width: 0;
+}
+
+.list[data-size="sm"] {
+  --text-list-font-size: 0.875rem;
+  --text-list-marker-size: 0.875rem;
+  --text-list-col-gap: 0.35rem;
+}
+
+.list[data-size="md"] {
+  --text-list-font-size: 1rem;
+  --text-list-marker-size: 1rem;
+  --text-list-col-gap: 0.5rem;
+}
+
+.list[data-size="lg"] {
+  --text-list-font-size: 1.125rem;
+  --text-list-marker-size: 1.125rem;
+  --text-list-col-gap: 0.6rem;
+}
+

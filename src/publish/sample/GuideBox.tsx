@@ -4,7 +4,7 @@ import { codeToHtml } from "shiki";
 
 type GuideBoxProps = {
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   code?: string;
   lang?: string;
   children: React.ReactNode;
@@ -45,7 +45,9 @@ function GuideBox({
       <div>
         <h2 className="text-lg font-semibold text-font-b">{title}</h2>
         {description ? (
-          <p className="text-sm text-font-g">{description}</p>
+          <div className="text-sm text-font-g [&_code]:text-font-b space-y-1">
+            {description}
+          </div>
         ) : null}
       </div>
 

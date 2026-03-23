@@ -32,8 +32,16 @@ function SampleInputPage() {
     />
   </div>
   <div className="flex flex-col gap-2">
-    <div className="text-sm text-font-g">type: password</div>
-    <Input type="password" defaultValue="password123!" />
+    <div className="text-sm text-font-g">password + resetEnabled</div>
+    <Input type="password" resetEnabled defaultValue="password123!" />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">password + resetEnabled (empty)</div>
+    <Input
+      type="password"
+      resetEnabled
+      placeholder="비밀번호를 입력하세요"
+    />
   </div>
   <div className="flex flex-col gap-2">
     <div className="text-sm text-font-g">invalid</div>
@@ -60,8 +68,16 @@ function SampleInputPage() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-sm text-font-g">type: password</div>
-              <Input type="password" defaultValue="password123!" />
+              <div className="text-sm text-font-g">password + resetEnabled</div>
+              <Input type="password" resetEnabled defaultValue="password123!" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">password + resetEnabled (empty)</div>
+              <Input
+                type="password"
+                resetEnabled
+                placeholder="비밀번호를 입력하세요"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <div className="text-sm text-font-g">invalid</div>
@@ -377,6 +393,74 @@ function SampleInputPage() {
                 />
                 <InputGroupAddon align="inline-end">
                   <Icon name="error-warning" size={16} />
+                </InputGroupAddon>
+              </InputGroup>
+            </div>
+          </div>
+        </GuideBox>
+
+        <GuideBox
+          title="resetEnabled"
+          description="값이 있을 때만 보이는 리셋 버튼 예시입니다. (suffix가 있으면 suffix 바로 앞)"
+          code={`
+<div className="grid max-w-4xl gap-4 md:grid-cols-2">
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">reset shown when value exists</div>
+    <Input resetEnabled defaultValue="입력해보세요" placeholder="리셋을 눌러 초기화" />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">reset hidden when empty</div>
+    <Input resetEnabled placeholder="값이 없으면 리셋이 숨겨집니다" />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">reset + suffix</div>
+    <InputGroup>
+      <InputGroupInput resetEnabled defaultValue="1000" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupText>KRW</InputGroupText>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">suffix + reset hidden</div>
+    <InputGroup>
+      <InputGroupInput resetEnabled placeholder="금액" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupText>KRW</InputGroupText>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+</div>
+          `}
+        >
+          <div className="grid max-w-4xl gap-4 md:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">reset shown when value exists</div>
+              <Input
+                resetEnabled
+                defaultValue="입력해보세요"
+                placeholder="리셋을 눌러 초기화"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">reset hidden when empty</div>
+              <Input resetEnabled placeholder="값이 없으면 리셋이 숨겨집니다" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">reset + suffix</div>
+              <InputGroup>
+                <InputGroupInput resetEnabled defaultValue="1000" />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupText>KRW</InputGroupText>
+                </InputGroupAddon>
+              </InputGroup>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">suffix + reset hidden</div>
+              <InputGroup>
+                <InputGroupInput resetEnabled placeholder="금액" />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupText>KRW</InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
             </div>

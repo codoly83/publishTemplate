@@ -1,0 +1,51 @@
+/* 가운데 정렬 · 네이티브 스피너/달력 UI 숨김 (스테퍼 버튼만 사용) */
+.stepperInput {
+  text-align: center;
+  text-align-last: center;
+
+  [data-slot="input-group-control"] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type="number"],
+    &[type="date"] {
+      appearance: none;
+      -moz-appearance: none;
+    }
+
+    /* WebKit date: 내부 편집 영역이 별도라 text-align만으로는 가운데 정렬이 안 됨 */
+    &[type="date"]::-webkit-datetime-edit {
+      text-align: center;
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    &[type="date"]::-webkit-datetime-edit-fields-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &[type="date"]::-webkit-date-and-time-value {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    &[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    &[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+    }
+  }
+}

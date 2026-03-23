@@ -71,9 +71,10 @@ export type PopoverContentProps = Omit<
     align?: React.ComponentProps<typeof PopoverPrimitive.Content>["align"];
     /**
      * 생략 시 Portal을 쓰지 않고, `PopoverTrigger` 바로 다음 형제로 DOM에 붙습니다.
-     * 특정 노드(스크롤 영역·모달 루트 등)에만 붙이려면 해당 요소를 넘깁니다. (예: `document.body`)
+     * 특정 노드(스크롤 영역·모달 루트 등)에만 붙이려면 해당 요소를 넘기거나,
+     * `"#aaa"` 같은 셀렉터 문자열로 넘길 수 있습니다. (예: `document.body`)
      */
-    container?: PopoverPortalProps["container"];
+    container?: PopoverPortalProps["container"] | string;
   };
 
 const PopoverContent = React.forwardRef<
@@ -101,6 +102,13 @@ const PopoverContent = React.forwardRef<
           align: alignProp ?? "center",
         };
 
+    const resolvedContainer =
+      typeof container === "string"
+        ? typeof document !== "undefined"
+          ? document.querySelector(container)
+          : null
+        : container;
+
     const content = (
       <PopoverPrimitive.Content
         ref={ref}
@@ -113,9 +121,9 @@ const PopoverContent = React.forwardRef<
       />
     );
 
-    if (container != null) {
+    if (resolvedContainer != null) {
       return (
-        <PopoverPrimitive.Portal container={container}>
+        <PopoverPrimitive.Portal container={resolvedContainer as any}>
           {content}
         </PopoverPrimitive.Portal>
       );
@@ -204,5 +212,4 @@ export {
   PopoverDescription,
 };
 export { popoverContentVariants };
-export type { PopoverContentProps };
 export type PopoverVariantProps = VariantProps<typeof popoverContentVariants>;

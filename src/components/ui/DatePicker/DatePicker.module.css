@@ -16,8 +16,11 @@
   text-align: left;
   outline: none;
   cursor: pointer;
-  transition: border-color 150ms ease, box-shadow 150ms ease,
-    background-color 150ms ease, color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
   &:not([data-variant="btnType"]) {
     box-shadow: inset 0 0 0 1px var(--line02);
     &:hover {
@@ -52,10 +55,29 @@
   white-space: nowrap;
 }
 
+.rightActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
 .triggerIcon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+  color: var(--font-g);
+}
+
+.resetButton {
+  min-width: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+.resetIcon {
   color: var(--font-g);
 }
 
@@ -84,12 +106,27 @@
     box-shadow: inset 0 0 0 1px var(--line02);
     border-radius: 8px;
     background-color: var(--font-w);
-    transition: border-color 150ms ease, box-shadow 150ms ease,
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease,
       background-color 150ms ease;
+  }
+
+  .resetButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px var(--line02);
+    background-color: var(--font-w);
   }
 
   /* hover → 아이콘 버튼에 효과 전달 */
   &:hover .triggerIconBtn {
+    box-shadow: inset 0 0 0 1px var(--btn-g);
+    background-color: var(--bg-box);
+  }
+
+  &:hover .resetButton {
     box-shadow: inset 0 0 0 1px var(--btn-g);
     background-color: var(--bg-box);
   }
@@ -99,7 +136,15 @@
     box-shadow: inset 0 0 0 1px var(--primary);
   }
 
+  &:focus-visible .resetButton {
+    box-shadow: inset 0 0 0 1px var(--primary);
+  }
+
   &[aria-invalid="true"] .triggerIconBtn {
+    box-shadow: inset 0 0 0 1px var(--red);
+  }
+
+  &[aria-invalid="true"] .resetButton {
     box-shadow: inset 0 0 0 1px var(--red);
   }
 }
@@ -108,7 +153,9 @@
   z-index: 50;
   width: auto;
   padding: 16px;
-  box-shadow: inset 0 0 0 1px var(--line01), 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 0 0 1px var(--line01),
+    0px 4px 8px 0px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   background-color: var(--font-w);
 }
@@ -161,7 +208,9 @@
   color: var(--font-g);
   outline: none;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
 
   &:hover {
     background-color: var(--bg-box);
@@ -228,7 +277,9 @@
   line-height: 1;
   outline: none;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
 
   &:hover {
     background-color: var(--bg-box);

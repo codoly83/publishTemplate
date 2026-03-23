@@ -1,28 +1,54 @@
-## 외부 PC 설치 목록
+## Node.js 및 pnpm 설치
 
-## 프로젝트 위치
+### 1. Node.js (npm 포함)
 
-### frontend
+[Node.js 공식 사이트](https://nodejs.org/)에서 LTS 버전을 설치합니다. (Windows는 설치 마법사를 쓰면 `node`, `npm` 명령이 Path에 잡힙니다.)
 
----
+설치 후 터미널을 새로 열고 다음으로 확인합니다.
 
-## node 및 pnpm 설치
+```bash
+node -v
+npm -v
+```
 
-1. node 경로 정하고 압축 해제
-2. pnpm 경로 정하고 `pnpm-win-x64.exe` 파일 넣기
-3. `pnpm.exe`로 이름 바꾸기
-4. pnpm 시스템 환경 변수 설정 -> Path 목록 중에 가장 위로 보내야 함
-5. node 내부에 있는 corepack pnpm 과 겹치기 때문에
-6. `pnpm config set store-dir C:\workspaces\pnpm-store`
-7. `pnpm install --offline`
-8. `pnpm dev`
+### 2. npm으로 pnpm 설치
+
+전역(global)으로 pnpm을 올립니다.
+
+```bash
+npm install -g pnpm
+```
+
+설치가 끝나면 버전을 확인합니다.
+
+```bash
+pnpm -v
+```
+
+**Windows 참고:** `pnpm`을 찾을 수 없다고 나오면, npm 전역 실행 파일 경로(보통 `%AppData%\npm`)가 사용자 **Path**에 있는지 확인합니다. Node 설치 시 “Add to PATH” 옵션을 켰다면 대부분 자동입니다.
+
+### 3. (선택) 스토어 경로 고정
+
+여러 프로젝트나 오프라인 환경에서 패키지 캐시 위치를 통일하려면 한 번만 설정합니다.
+
+```bash
+pnpm config set store-dir C:\workspaces\pnpm-store
+```
+
+### 4. 이 프로젝트에서 실행
+
+프로젝트 루트(`package.json`이 있는 폴더)에서:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+스토어를 미리 맞춰 둔 오프라인 PC라면 `pnpm install --offline`을 사용할 수 있습니다. (스토어에 없는 패키지가 있으면 실패합니다.)
 
 ## 스택
 
 - React 19 + TypeScript 5.9
 - Vite 7
 - tailwind 4
-- TanStack Query 5
-- Zustand 5
 - React Router 7
-- MSW 2

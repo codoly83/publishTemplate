@@ -17,6 +17,9 @@
     "nexus:all": "npm run nexus:parse && npm run nexus:download && npm run nexus:upload"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@react-pdf-viewer/highlight": "^3.12.0",
@@ -39,6 +42,7 @@
     "react-router-dom": "^7.1.3",
     "shiki": "^4.0.2",
     "sonner": "^2.0.7",
+    "swiper": "^12.1.2",
     "tailwind-merge": "^3.5.0",
     "zustand": "^5.0.9"
   },

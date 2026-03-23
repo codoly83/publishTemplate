@@ -15,6 +15,8 @@ import SampleDatePickerPage from "@/publish/sample/sampleDatePicker";
 import SampleModalPage from "@/publish/sample/sampleModal";
 import SampleIconPage from "@/publish/sample/SampleIcon";
 import SampleInputPage from "@/publish/sample/sampleInput";
+import SampleInputStepperPage from "@/publish/sample/sampleInputStepper";
+import SampleLoadingPage from "@/publish/sample/sampleLoading";
 import SampleTextareaPage from "@/publish/sample/sampleTextarea";
 import SampleLayout from "@/publish/sample/sampleLayout";
 import SampleLayoutBasicPage from "@/publish/sample/sampleLayoutBasic";
@@ -36,56 +38,254 @@ import SampleSliderPage from "@/publish/sample/sampleSlider";
 import SampleToastPage from "@/publish/sample/sampleToast";
 import SamplePopoverPage from "@/publish/sample/samplePopover";
 import SampleSkeletonPage from "@/publish/sample/sampleSkeleton";
+import SampleSortableListPage from "@/publish/sample/sampleSortableList";
+import SamplePageScrollSpy from "@/publish/sample/samplePageScrollSpy";
+import SampleScrollTopButtonPage from "@/publish/sample/sampleScrollTopButton";
+import SampleSwiperPage from "@/publish/sample/sampleSwiper";
+import SampleTextListPage from "@/publish/sample/sampleTextList";
+import { publishGuideNavItems } from "@/publish/data/sampleMeta";
+import { RouteTitleSync } from "./RouteTitleSync";
+
+const titleByPath = publishGuideNavItems.reduce<Record<string, string>>(
+  (acc, item) => {
+    acc[item.path] = item.title;
+    return acc;
+  },
+  {},
+);
+
+function getGuideChildTitle(path: string) {
+  return titleByPath[`/guide/${path}`];
+}
 export const routes = [
   {
     path: "/",
-    element: <RootLayout />,
+    element: (
+      <>
+        <RouteTitleSync />
+        <RootLayout />
+      </>
+    ),
+    handle: { title: "Home" },
     children: [{ index: true, element: <Navigate to="/guide" replace /> }],
   },
 
   {
     path: "/guide",
-    element: <Guide />,
+    element: (
+      <>
+        <RouteTitleSync />
+        <Guide />
+      </>
+    ),
+    handle: { title: "Guide" },
     children: [
-      { index: true, element: <PublishingList /> },
-      { path: "accordion", element: <SampleAccordionPage /> },
-      { path: "collapsible", element: <SampleCollapsiblePage /> },
-      { path: "button", element: <SampleButtonPage /> },
-      { path: "alert-dialog", element: <SampleAlertDialogPage /> },
-      { path: "modal", element: <SampleModalPage /> },
-      { path: "checkbox", element: <SampleCheckboxPage /> },
-      { path: "chip", element: <SampleChipPage /> },
-      { path: "datepicker", element: <SampleDatePickerPage /> },
-      { path: "icon", element: <SampleIconPage /> },
-      { path: "input", element: <SampleInputPage /> },
-      { path: "textarea", element: <SampleTextareaPage /> },
-      { path: "radio", element: <SampleRadioPage /> },
-      { path: "select", element: <SampleSelectPage /> },
-      { path: "switch", element: <SampleSwitchPage /> },
-      { path: "slider", element: <SampleSliderPage /> },
-      { path: "tabs", element: <SampleTabsPage /> },
-      { path: "table", element: <SampleTablePage /> },
-      { path: "scrollarea", element: <SampleScrollAreaPage /> },
-      { path: "pagination", element: <SamplePaginationPage /> },
-      { path: "pagechangepanel", element: <SamplePageChangePanelPage /> },
-      { path: "portal", element: <SamplePortalPage /> },
-      { path: "font", element: <SampleFontPage /> },
-      { path: "hooks", element: <SampleHooksPage /> },
-      { path: "tooltip", element: <SampleTooltipPage /> },
-      { path: "toast", element: <SampleToastPage /> },
-      { path: "popover", element: <SamplePopoverPage /> },
-      { path: "skeleton", element: <SampleSkeletonPage /> },
+      { index: true, element: <PublishingList />, handle: { title: "List" } },
+      {
+        path: "accordion",
+        element: <SampleAccordionPage />,
+        handle: { title: getGuideChildTitle("accordion") },
+      },
+      {
+        path: "collapsible",
+        element: <SampleCollapsiblePage />,
+        handle: { title: getGuideChildTitle("collapsible") },
+      },
+      {
+        path: "button",
+        element: <SampleButtonPage />,
+        handle: { title: getGuideChildTitle("button") },
+      },
+      {
+        path: "alert-dialog",
+        element: <SampleAlertDialogPage />,
+        handle: { title: getGuideChildTitle("alert-dialog") },
+      },
+      {
+        path: "modal",
+        element: <SampleModalPage />,
+        handle: { title: getGuideChildTitle("modal") },
+      },
+      {
+        path: "checkbox",
+        element: <SampleCheckboxPage />,
+        handle: { title: getGuideChildTitle("checkbox") },
+      },
+      {
+        path: "chip",
+        element: <SampleChipPage />,
+        handle: { title: getGuideChildTitle("chip") },
+      },
+      {
+        path: "datepicker",
+        element: <SampleDatePickerPage />,
+        handle: { title: getGuideChildTitle("datepicker") },
+      },
+      {
+        path: "icon",
+        element: <SampleIconPage />,
+        handle: { title: getGuideChildTitle("icon") },
+      },
+      {
+        path: "input",
+        element: <SampleInputPage />,
+        handle: { title: getGuideChildTitle("input") },
+      },
+      {
+        path: "input-stepper",
+        element: <SampleInputStepperPage />,
+        handle: { title: getGuideChildTitle("input-stepper") },
+      },
+      {
+        path: "loading",
+        element: <SampleLoadingPage />,
+        handle: { title: getGuideChildTitle("loading") },
+      },
+      {
+        path: "textarea",
+        element: <SampleTextareaPage />,
+        handle: { title: getGuideChildTitle("textarea") },
+      },
+      {
+        path: "radio",
+        element: <SampleRadioPage />,
+        handle: { title: getGuideChildTitle("radio") },
+      },
+      {
+        path: "select",
+        element: <SampleSelectPage />,
+        handle: { title: getGuideChildTitle("select") },
+      },
+      {
+        path: "switch",
+        element: <SampleSwitchPage />,
+        handle: { title: getGuideChildTitle("switch") },
+      },
+      {
+        path: "slider",
+        element: <SampleSliderPage />,
+        handle: { title: getGuideChildTitle("slider") },
+      },
+      {
+        path: "tabs",
+        element: <SampleTabsPage />,
+        handle: { title: getGuideChildTitle("tabs") },
+      },
+      {
+        path: "table",
+        element: <SampleTablePage />,
+        handle: { title: getGuideChildTitle("table") },
+      },
+      {
+        path: "scrollarea",
+        element: <SampleScrollAreaPage />,
+        handle: { title: getGuideChildTitle("scrollarea") },
+      },
+      {
+        path: "pagination",
+        element: <SamplePaginationPage />,
+        handle: { title: getGuideChildTitle("pagination") },
+      },
+      {
+        path: "pagechangepanel",
+        element: <SamplePageChangePanelPage />,
+        handle: { title: getGuideChildTitle("pagechangepanel") },
+      },
+      {
+        path: "portal",
+        element: <SamplePortalPage />,
+        handle: { title: getGuideChildTitle("portal") },
+      },
+      {
+        path: "font",
+        element: <SampleFontPage />,
+        handle: { title: getGuideChildTitle("font") },
+      },
+      {
+        path: "hooks",
+        element: <SampleHooksPage />,
+        handle: { title: getGuideChildTitle("hooks") },
+      },
+      {
+        path: "tooltip",
+        element: <SampleTooltipPage />,
+        handle: { title: getGuideChildTitle("tooltip") },
+      },
+      {
+        path: "toast",
+        element: <SampleToastPage />,
+        handle: { title: getGuideChildTitle("toast") },
+      },
+      {
+        path: "popover",
+        element: <SamplePopoverPage />,
+        handle: { title: getGuideChildTitle("popover") },
+      },
+      {
+        path: "skeleton",
+        element: <SampleSkeletonPage />,
+        handle: { title: getGuideChildTitle("skeleton") },
+      },
+      {
+        path: "sortable-list",
+        element: <SampleSortableListPage />,
+        handle: { title: getGuideChildTitle("sortable-list") },
+      },
+      {
+        path: "page-scroll-spy",
+        element: <SamplePageScrollSpy />,
+        handle: { title: getGuideChildTitle("page-scroll-spy") },
+      },
+      {
+        path: "scroll-top-button",
+        element: <SampleScrollTopButtonPage />,
+        handle: { title: getGuideChildTitle("scroll-top-button") },
+      },
+      {
+        path: "swiper",
+        element: <SampleSwiperPage />,
+        handle: { title: getGuideChildTitle("swiper") },
+      },
+      {
+        path: "text-list",
+        element: <SampleTextListPage />,
+        handle: { title: getGuideChildTitle("text-list") },
+      },
     ],
   },
 
   {
     path: "/guide",
-    element: <DefaultLayout />,
-    children: [{ path: "layout", element: <SampleLayout /> }],
+    element: (
+      <>
+        <RouteTitleSync />
+        <DefaultLayout />
+      </>
+    ),
+    handle: { title: "Guide" },
+    children: [
+      {
+        path: "layout",
+        element: <SampleLayout />,
+        handle: { title: getGuideChildTitle("layout") },
+      },
+    ],
   },
   {
     path: "/guide/layout-basic",
-    element: <PageLayoutBasic />,
-    children: [{ index: true, element: <SampleLayoutBasicPage /> }],
+    element: (
+      <>
+        <RouteTitleSync />
+        <PageLayoutBasic />
+      </>
+    ),
+    handle: { title: "Guide" },
+    children: [
+      {
+        index: true,
+        element: <SampleLayoutBasicPage />,
+        handle: { title: titleByPath["/guide/layout-basic"] },
+      },
+    ],
   },
 ];

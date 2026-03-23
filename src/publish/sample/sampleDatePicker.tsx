@@ -1,4 +1,9 @@
-import { DatePicker, DateRangePicker, type DateRange } from "@/components/ui";
+import {
+  DatePicker,
+  DateRangePicker,
+  DateRangePickerTwoPickers,
+  type DateRange,
+} from "@/components/ui";
 import * as React from "react";
 import { GuideBox } from "./GuideBox";
 
@@ -85,6 +90,60 @@ function SampleDatePickerPage() {
                 defaultValue={new Date(2026, 2, 15)}
                 aria-invalid="true"
               />
+            </div>
+          </div>
+        </GuideBox>
+
+        <GuideBox
+          title="resetEnabled"
+          description="선택된 날짜가 있을 때만 트리거 우측에 리셋 버튼이 표시됩니다."
+          code={`
+<div className="grid max-w-3xl gap-4 md:grid-cols-2">
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">default (value exists)</div>
+    <DatePicker resetEnabled defaultValue={new Date(2026, 2, 7)} />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">default (empty)</div>
+    <DatePicker resetEnabled placeholder="YYYY.MM.DD" />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">btnType (value exists)</div>
+    <DatePicker variant="btnType" resetEnabled defaultValue={new Date(2026, 2, 15)} />
+  </div>
+  <div className="flex flex-col gap-2">
+    <div className="text-sm text-font-g">btnType (empty)</div>
+    <DatePicker variant="btnType" resetEnabled placeholder="YYYY.MM.DD" />
+  </div>
+</div>
+          `}
+        >
+          <div className="grid max-w-3xl gap-4 md:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">default (value exists)</div>
+              <DatePicker
+                resetEnabled
+                defaultValue={new Date(2026, 2, 7)}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">default (empty)</div>
+              <DatePicker resetEnabled placeholder="YYYY.MM.DD" />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">btnType (value exists)</div>
+              <DatePicker
+                variant="btnType"
+                resetEnabled
+                defaultValue={new Date(2026, 2, 15)}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">btnType (empty)</div>
+              <DatePicker variant="btnType" resetEnabled placeholder="YYYY.MM.DD" />
             </div>
           </div>
         </GuideBox>
@@ -319,6 +378,36 @@ function SampleDatePickerPage() {
                     : "—"}
                 </div>
               </div>
+            </div>
+          </div>
+        </GuideBox>
+
+        <GuideBox
+          title="Range by 2 DatePickers"
+          description="시작일/종료일을 DatePicker 2개로 구성해 선택합니다."
+          code={`
+  <DateRangePickerTwoPickers
+    defaultValue={{ from: new Date(2026, 2, 5), to: new Date(2026, 2, 20) }}
+  />
+  <DateRangePickerTwoPickers startPlaceholder="시작일" endPlaceholder="종료일" />
+          `}
+        >
+          <div className="grid max-w-3xl gap-4 md:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">start/end (default)</div>
+              <DateRangePickerTwoPickers
+                defaultValue={{
+                  from: new Date(2026, 2, 5),
+                  to: new Date(2026, 2, 20),
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm text-font-g">start/end (empty)</div>
+              <DateRangePickerTwoPickers
+                startPlaceholder="시작일"
+                endPlaceholder="종료일"
+              />
             </div>
           </div>
         </GuideBox>

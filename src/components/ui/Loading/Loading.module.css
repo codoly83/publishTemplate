@@ -1,0 +1,68 @@
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(17, 24, 39, 0.86);
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+.spinner {
+  display: inline-block;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  animation: loading-spin 0.8s linear infinite;
+}
+
+.spinner-sm {
+  width: 14px;
+  height: 14px;
+}
+
+.spinner-md {
+  width: 18px;
+  height: 18px;
+}
+
+.spinner-lg {
+  width: 22px;
+  height: 22px;
+}
+
+.screenOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(1px);
+}
+
+.areaRoot {
+  position: relative;
+}
+
+.areaOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 23, 42, 0.35);
+  border-radius: inherit;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

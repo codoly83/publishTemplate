@@ -135,8 +135,11 @@
   justify-content: center;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease,
-    border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 
   svg {
     pointer-events: none;
@@ -154,4 +157,13 @@
 .tabsContent {
   flex: 1;
   outline: none;
+}
+
+/* scrollSpy: 패널을 모두 DOM에 두고 스크롤로 활성 탭만 바꿀 때 */
+.tabsScrollSpyPanel {
+  display: block;
+  outline: none;
+}
+
+.tabs[data-scroll-spy="true"] {
 }

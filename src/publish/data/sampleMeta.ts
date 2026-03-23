@@ -6,7 +6,11 @@ export interface PublishSampleItem {
 }
 
 /** 가이드 사이드바 섹션 구분 */
-export type GuideNavSectionId = "layout" | "functional" | "components";
+export type GuideNavSectionId =
+  | "layout"
+  | "pageFeatures"
+  | "functional"
+  | "components";
 
 /** 사이드바·메타 공통 항목 (레이아웃 / 훅 / 컴포넌트 한곳에서 관리) */
 export interface PublishGuideNavItem extends PublishSampleItem {
@@ -25,6 +29,7 @@ export const GUIDE_NAV_SECTIONS: {
   label: string;
 }[] = [
   { id: "layout", label: "layout 컴포넌트" },
+  { id: "pageFeatures", label: "페이지 기능 샘플" },
   { id: "functional", label: "기능성 컴포넌트" },
   { id: "components", label: "components" },
 ];
@@ -103,6 +108,22 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "inputStepper",
+    title: "InputStepper",
+    path: "/guide/input-stepper",
+    description:
+      "숫자·날짜 증감, +/− 또는 chevron 버튼이 붙은 InputGroup 스타일 스테퍼입니다.",
+    section: "components",
+  },
+  {
+    id: "loading",
+    title: "Loading",
+    path: "/guide/loading",
+    description:
+      "Loading 단일 컴포넌트에서 fullscreen props로 전체 화면(기본)/특정 영역 오버레이 로딩 패턴을 확인합니다.",
+    section: "components",
+  },
+  {
     id: "modal",
     title: "Modal",
     path: "/guide/modal",
@@ -173,6 +194,14 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "sortableList",
+    title: "SortableList",
+    path: "/guide/sortable-list",
+    description:
+      "드래그 앤 드롭으로 목록 순서를 변경합니다. 마우스·터치(모바일)·키보드 모두 지원합니다.",
+    section: "components",
+  },
+  {
     id: "slider",
     title: "Slider",
     path: "/guide/slider",
@@ -225,7 +254,19 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
       "Tooltip 컴포넌트의 다양한 variant, size, delay 옵션을 확인합니다.",
     section: "components",
   },
+  {
+    id: "textList",
+    title: "TextList",
+    path: "/guide/text-list",
+    description:
+      "마커(•/★/■/1.2.3/①…) 타입을 `type`과 `items[]` 복합 패턴으로 제어하는 리스트 컴포넌트 샘플입니다.",
+    section: "components",
+  },
 ];
+
+const guideNavComponentItemsByABC = [...guideNavComponentItems].sort((a, b) =>
+  a.title.localeCompare(b.title, "en", { sensitivity: "base" })
+);
 
 /** 가이드 사이드바 전체 (레이아웃·훅·컴포넌트) */
 export const publishGuideNavItems: PublishGuideNavItem[] = [
@@ -250,6 +291,30 @@ export const publishGuideNavItems: PublishGuideNavItem[] = [
     end: true,
   },
   {
+    id: "pageScrollSpy",
+    title: "ScrollSpy 네비",
+    path: "/guide/page-scroll-spy",
+    description:
+      "스크롤 시 섹션에 맞춰 메뉴가 활성화되고, 메뉴 클릭 시 해당 영역으로 이동합니다. 메뉴는 sticky입니다.",
+    section: "pageFeatures",
+  },
+  {
+    id: "scrollTopButton",
+    title: "Scroll Top Button",
+    path: "/guide/scroll-top-button",
+    description:
+      "일정 스크롤 이상 노출형, 위로 스크롤 시에만 노출형 Top 버튼 UX 패턴을 비교합니다.",
+    section: "pageFeatures",
+  },
+  {
+    id: "swiper",
+    title: "Swiper",
+    path: "/guide/swiper",
+    description:
+      "Swiper 기본 슬라이더 구성과 Navigation/Pagination/Scrollbar 모듈 사용법을 확인합니다.",
+    section: "pageFeatures",
+  },
+  {
     id: "hooks",
     title: "Hooks",
     path: "/guide/hooks",
@@ -257,7 +322,7 @@ export const publishGuideNavItems: PublishGuideNavItem[] = [
       "src/hooks의 useRemainingHeight, useHtmlRootClass(<html>), useHtmlTag(head·body), useLayoutClass 등 공용 훅 사용 예시를 한 페이지에서 확인합니다.",
     section: "functional",
   },
-  ...guideNavComponentItems,
+  ...guideNavComponentItemsByABC,
 ];
 
 function toPublishSampleItem(item: PublishGuideNavItem): PublishSampleItem {
@@ -271,4 +336,4 @@ function toPublishSampleItem(item: PublishGuideNavItem): PublishSampleItem {
 
 /** components 섹션만 (기존 publishSampleItems 호환) */
 export const publishSampleItems: PublishSampleItem[] =
-  guideNavComponentItems.map(toPublishSampleItem);
+  guideNavComponentItemsByABC.map(toPublishSampleItem);
