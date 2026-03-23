@@ -1,0 +1,328 @@
+.tooltipProvider {
+  // Provider 스타일 (필요시)
+}
+
+.tooltip {
+  // Root 스타일 (필요시)
+}
+
+.tooltipTrigger {
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.tooltipContent {
+  z-index: 50;
+  width: fit-content;
+  border-radius: 8px;
+  background: var(--bg-base);
+  color: var(--font-b);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  animation-duration: 100ms;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.variantDefault {
+    background: var(--bg-base);
+    color: var(--font-b);
+  }
+
+  &.variantLight {
+    background: var(--bg-base);
+    color: var(--font-b);
+    border: 1px solid var(--line02);
+  }
+
+  &.variantDark {
+    background: var(--font-b);
+    color: var(--font-w);
+  }
+
+  &.variantWarning {
+    background: var(--red);
+    color: var(--font-w);
+  }
+
+  &.variantError {
+    background: var(--yellow);
+    color: var(--font-w);
+  }
+
+  &.variantSuccess {
+    background: var(--primary);
+    color: var(--font-w);
+  }
+
+  &.variantInfo {
+    background: var(--font-b);
+    color: var(--font-w);
+  }
+
+  // Sizes
+  &.sizeSm {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+
+  &.sizeMd {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  &.sizeLg {
+    padding: 16px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  // Animations
+  &[data-state="delayed-open"],
+  &[data-state="instant-open"] {
+    animation-name: slideIn;
+  }
+
+  &[data-state="closed"] {
+    animation-name: slideOut;
+  }
+
+  // Position based styles
+  &[data-side="top"] {
+    margin-bottom: 8px;
+  }
+
+  &[data-side="bottom"] {
+    margin-top: 8px;
+  }
+
+  &[data-side="left"] {
+    margin-right: 8px;
+  }
+
+  &[data-side="right"] {
+    margin-left: 8px;
+  }
+}
+
+.tooltipArrow {
+  fill: var(--bg-base);
+
+  .variantLight & {
+    fill: var(--bg-base);
+  }
+
+  .variantDark & {
+    fill: var(--font-b);
+  }
+
+  .variantWarning & {
+    fill: var(--warning);
+  }
+
+  .variantError & {
+    fill: var(--error);
+  }
+
+  .variantSuccess & {
+    fill: var(--success);
+  }
+
+  .variantInfo & {
+    fill: var(--info);
+  }
+}
+
+// Close button styles for tooltip
+.tooltipCloseButton {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--bg-base);
+  border: 1px solid var(--line01);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--font-b);
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: var(--line01);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+}
+
+// Position-specific animations
+[data-side="top"] .tooltipContent {
+  &[data-state="delayed-open"],
+  &[data-state="instant-open"] {
+    animation-name: slideInTop;
+  }
+
+  &[data-state="closed"] {
+    animation-name: slideOutTop;
+  }
+}
+
+[data-side="bottom"] .tooltipContent {
+  &[data-state="delayed-open"],
+  &[data-state="instant-open"] {
+    animation-name: slideInBottom;
+  }
+
+  &[data-state="closed"] {
+    animation-name: slideOutBottom;
+  }
+}
+
+[data-side="left"] .tooltipContent {
+  &[data-state="delayed-open"],
+  &[data-state="instant-open"] {
+    animation-name: slideInLeft;
+  }
+
+  &[data-state="closed"] {
+    animation-name: slideOutLeft;
+  }
+}
+
+[data-side="right"] .tooltipContent {
+  &[data-state="delayed-open"],
+  &[data-state="instant-open"] {
+    animation-name: slideInRight;
+  }
+
+  &[data-state="closed"] {
+    animation-name: slideOutRight;
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideOutTop {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.95);
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideOutBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.95);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(4px) scale(0.95);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-4px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-4px) scale(0.95);
+  }
+}

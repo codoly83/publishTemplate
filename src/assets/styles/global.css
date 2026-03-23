@@ -1,0 +1,7 @@
+@import "tailwindcss";
+/* 자동 스캔이 일부 파일을 놓칠 때 유틸(h-4, w-2/3 등)이 생성되지 않는 경우 방지 */
+@source "../../**/*.{tsx,ts,jsx,js}";
+@import "./_font.css";
+@import "./_color.css";
+@import "./_base.css";
+@import "./_layout.css";

@@ -1,0 +1,119 @@
+.sliderRoot {
+  position: relative;
+  display: flex;
+  width: 100%;
+  touch-action: none;
+  user-select: none;
+  align-items: center;
+
+  &[data-disabled] {
+    opacity: 0.5;
+  }
+
+  &[data-orientation="vertical"] {
+    height: 100%;
+    min-height: 11rem;
+    width: auto;
+    flex-direction: column;
+  }
+
+  &.sizeSm {
+    &[data-orientation="horizontal"] .sliderTrack {
+      height: 4px;
+    }
+
+    &[data-orientation="vertical"] .sliderTrack {
+      width: 4px;
+    }
+
+    .sliderThumb {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &.sizeMd {
+    &[data-orientation="horizontal"] .sliderTrack {
+      height: 6px;
+    }
+
+    &[data-orientation="vertical"] .sliderTrack {
+      width: 6px;
+    }
+
+    .sliderThumb {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.sizeLg {
+    &[data-orientation="horizontal"] .sliderTrack {
+      height: 8px;
+    }
+
+    &[data-orientation="vertical"] .sliderTrack {
+      width: 8px;
+    }
+
+    .sliderThumb {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.sliderTrack {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: var(--bg-container);
+}
+
+.sliderRoot[data-orientation="horizontal"] .sliderTrack {
+  width: 100%;
+}
+
+.sliderRoot[data-orientation="vertical"] .sliderTrack {
+  height: 100%;
+}
+
+.sliderRange {
+  position: absolute;
+  background: var(--primary);
+}
+
+.sliderRoot[data-orientation="horizontal"] .sliderRange {
+  height: 100%;
+}
+
+.sliderRoot[data-orientation="vertical"] .sliderRange {
+  width: 100%;
+}
+
+.sliderThumb {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--primary);
+  background: var(--bg-base);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition:
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+  outline: none;
+
+  &:hover {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,119 @@
+.switchRoot {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 9999px;
+  background-color: var(--btn-g);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease,
+    box-shadow 150ms ease, opacity 150ms ease;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 3px 2px color-mix(in srgb, var(--primary) 60%, transparent);
+  }
+
+  &[data-state="checked"] {
+    background-color: var(--btn-b);
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+.switchRootSizeDefault {
+  min-width: 68px;
+  height: 32px;
+  padding: 4px;
+}
+
+.switchRootSizeSm {
+  width: 26px;
+  height: 16px;
+  padding: 2px;
+  &[data-state="checked"] {
+    background-color: var(--primary);
+  }
+}
+
+.switchLabel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 4px;
+  pointer-events: none;
+  min-width: 100%;
+  .switchRoot[data-state="checked"] & {
+    justify-content: flex-start;
+  }
+
+  .switchRoot[data-size="sm"] & {
+    display: none;
+  }
+
+  .switchText {
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--font-w);
+    transition: opacity 150ms ease;
+    white-space: nowrap;
+    width: calc(100% - 24px);
+    text-align: center;
+    .switchRoot[data-disabled] &,
+    .switchRoot:disabled & {
+      opacity: 0.7;
+    }
+  }
+  .switchTextOn {
+    .switchRoot[data-state="checked"] & {
+      display: block;
+    }
+  }
+
+  .switchTextOff {
+    .switchRoot[data-state="unchecked"] & {
+      display: block;
+    }
+  }
+}
+
+.switchThumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  border-radius: 9999px;
+  background-color: var(--font-w);
+  pointer-events: none;
+  transition: left 150ms ease, background-color 150ms ease;
+
+  .switchRoot[data-size="default"] & {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+  }
+
+  .switchRoot[data-size="sm"] & {
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+  }
+
+  &[data-state="unchecked"] {
+    left: 0;
+  }
+
+  &[data-state="checked"] {
+    left: calc(100% - 32px);
+  }
+  .switchRoot[data-size="sm"] &[data-state="checked"] {
+    left: calc(100% - 16px);
+  }
+}

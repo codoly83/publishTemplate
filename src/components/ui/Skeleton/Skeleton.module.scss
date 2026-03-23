@@ -1,0 +1,45 @@
+/* 라이트/다크 모두에서 --bg-base와 구분되도록 (다크에서 --bg-container=#000은 거의 안 보임) */
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.82;
+  }
+}
+
+.skeleton {
+  display: block;
+  box-sizing: border-box;
+  /* Tailwind height/width 유틸이 적용되도록 별도 height·width 미지정 */
+  background-color: var(--bg-box);
+  border: 1px solid var(--line02);
+  animation: skeletonPulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  &.variantDefault {
+    /* 기본 톤 */
+  }
+
+  &.variantMuted {
+    background-color: var(--line01);
+    border-color: var(--line02);
+  }
+
+  &.roundedSm {
+    border-radius: 4px;
+  }
+
+  &.roundedMd {
+    border-radius: 6px;
+  }
+
+  &.roundedLg {
+    border-radius: 10px;
+  }
+
+  &.roundedFull {
+    border-radius: 9999px;
+  }
+}

@@ -1,0 +1,91 @@
+// =============================================================================
+// 레이아웃 루트 — 전체 페이지 셸(세로 플렉스 컬럼)
+// 종속: .header → .viewport(본문만 스크롤) → .footer(항상 레이아웃 최하단, sticky 아님)
+// =============================================================================
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-base);
+  &.type2 {
+    background: var(--bg-container);
+  }
+}
+
+// =============================================================================
+// 상단 헤더 구역 — 고정 높이 바(스크롤 제외)
+// =============================================================================
+.header {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line02);
+  background: var(--bg-base);
+
+  .inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-b);
+    min-width: 0;
+  }
+
+  .titleSlot {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+// =============================================================================
+// 본문 스크롤 영역 — 남는 높이를 채우고, 안쪽만 세로 스크롤
+// =============================================================================
+.viewport {
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  width: 100%;
+
+  .contents {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+// =============================================================================
+// 하단 푸터 — sticky 아님, .root 플렉스로 항상 레이아웃 최하단에 배치
+// =============================================================================
+.footer {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 12px 20px;
+  border-top: 1px solid var(--line02);
+  background: var(--bg-base);
+}

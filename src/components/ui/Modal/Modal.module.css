@@ -1,0 +1,193 @@
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes contentHide {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+}
+
+/* ───────── Overlay ───────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &[data-state="open"] {
+    animation: overlayShow 150ms ease;
+  }
+  &[data-state="closed"] {
+    animation: overlayHide 150ms ease;
+  }
+}
+
+/* ───────── Content (wrapper) ───────── */
+.modalContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  background-color: var(--bg-base);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  outline: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: calc(100% - 2rem);
+  padding: 24px;
+  max-height: calc(100vh - 40px);
+
+  &[data-state="open"] {
+    animation: contentShow 200ms ease;
+  }
+  &[data-state="closed"] {
+    animation: contentHide 200ms ease;
+  }
+
+  /* ── Size Variants ── */
+  &.sizeAlert {
+    max-width: 400px;
+    text-align: center;
+    border-radius: 16px;
+    /* .modalTitle {
+      @apply sr-only;
+    } */
+    .modalBodyScrollArea {
+      margin-top: 8px;
+    }
+    &:has(:not(.modalHeader)) {
+      padding-top: 56px;
+    }
+  }
+
+  &.sizeSmall {
+    max-width: 600px;
+  }
+
+  &.sizeMedium {
+    max-width: 1200px;
+  }
+
+  &.sizeLarge {
+    max-width: 1600px;
+  }
+
+  &.sizeFullscreen {
+    max-width: calc(100% - 134px);
+    max-height: calc(100vh - 148px);
+    border-radius: 16px;
+  }
+}
+.modalBodyScrollArea {
+  grid-row: 2;
+  min-height: 0;
+  margin: 24px -24px;
+  padding: 0 24px;
+}
+/* ───────── Header ───────── */
+.modalHeader {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  gap: 12px;
+}
+
+/* ───────── Title ───────── */
+.modalTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--font-b);
+  line-height: 1;
+}
+
+/* ───────── Body ───────── */
+.modalBody {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--font-b);
+}
+
+.modalDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--font-b);
+}
+/* ───────── Footer ───────── */
+.modalFooter {
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ───────── Visually Hidden (접근성용, 화면에 미표시) ───────── */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ───────── Close Button ───────── */
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  z-index: 1;
+  border-radius: 100%;
+  color: var(--font-g, #666);
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease;
+
+  &:hover {
+    color: var(--font-b, #1a1a1a);
+    background-color: var(--bg-box, #f5f5f5);
+  }
+}

@@ -1,0 +1,93 @@
+import { Switch } from "@/components/ui";
+import { useTheme } from "@/providers/theme-provider";
+
+import { NavLink, Outlet } from "react-router-dom";
+
+import { ExternalLink } from "lucide-react";
+import {
+  GUIDE_NAV_SECTIONS,
+  publishGuideNavItems,
+} from "./data/sampleMeta";
+import "./guide.css";
+
+function Guide() {
+  const { setTheme } = useTheme();
+  return (
+    <div className="flex h-screen flex-col">
+      <header className="flex items-center justify-between border-b border-gr01 bg-base px-4 py-3">
+        <NavLink to="/publish" className="text-primary font-bold">
+          Publish Guide
+        </NavLink>
+
+        <div className="flex items-center gap-2">
+          <span className="text-font-b text-sm">다크모드 설정</span>
+          <Switch
+            aria-label="다크모드 설정"
+            onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+          />
+        </div>
+      </header>
+      <main className="flex-1 flex gap-4 p-4 bg-line01 overflow-hidden">
+        <aside className="flex flex-col bg-base rounded-2xl w-50">
+          <div className="guide-title">
+            총 {publishGuideNavItems.length}개의 샘플 페이지
+          </div>
+          <div className="flex-1 flex flex-col gap-2 overflow-y-auto my-3 px-3">
+            {GUIDE_NAV_SECTIONS.map((section, sectionIndex) => {
+              const items = publishGuideNavItems.filter(
+                (item) => item.section === section.id,
+              );
+              return (
+                <div key={section.id} className="contents">
+                  <div
+                    className={`flex items-center border-b py-3 text-sm font-bold ${
+                      sectionIndex > 0 ? "mt-3" : ""
+                    }`}
+                  >
+                    {section.label}
+                  </div>
+                  {items.map((item) => (
+                    <NavLink
+                      key={item.id}
+                      to={item.path}
+                      end={item.end}
+                      target={item.openInNewTab ? "_blank" : undefined}
+                      rel={
+                        item.openInNewTab ? "noopener noreferrer" : undefined
+                      }
+                      className={({ isActive }) =>
+                        [
+                          "rounded px-2 py-1 text-sm text-font-b",
+                          item.showExternalIcon
+                            ? "flex items-center justify-between"
+                            : "",
+                          isActive
+                            ? "bg-primary text-font-w"
+                            : "hover:bg-container",
+                        ]
+                          .filter(Boolean)
+                          .join(" ")
+                      }
+                    >
+                      {item.title}
+                      {item.showExternalIcon ? (
+                        <ExternalLink size={16} aria-hidden />
+                      ) : null}
+                    </NavLink>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </aside>
+
+        <div className="flex-1 rounded-2xl border border-line02 bg-base overflow-hidden">
+          <Outlet />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export { Guide };
+export default Guide;

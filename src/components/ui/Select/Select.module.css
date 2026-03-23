@@ -1,0 +1,306 @@
+.trigger {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--line02);
+  border-radius: 8px;
+  background-color: var(--font-w);
+  color: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    background-color 150ms ease, color 150ms ease;
+
+  &:hover {
+    border-color: var(--btn-g);
+  }
+
+  &:focus-visible {
+    border-color: var(--primary);
+  }
+  &[data-state="open"] {
+    border-color: var(--primary);
+  }
+
+  &[aria-invalid="true"] {
+    border-color: var(--red);
+  }
+
+  &[data-placeholder] {
+    color: var(--font-lg);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--font-b);
+    background-color: var(--line01);
+    border-color: var(--line02);
+  }
+
+  svg {
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  &.variantBtnType {
+    padding-right: 0;
+    border-color: transparent;
+    font-weight: bold;
+    &:hover {
+      border-color: transparent;
+      .triggerIcon {
+        border-color: var(--btn-g);
+      }
+    }
+    &:focus {
+      padding-right: 8px;
+      border-color: var(--primary);
+      .triggerIcon {
+        width: 16px;
+        height: 16px;
+        border: 0;
+        border-color: var(--primary);
+      }
+    }
+    &:disabled {
+      pointer-events: none;
+      background: transparent;
+      .triggerIcon {
+        opacity: 0.6;
+        border-color: var(--line02);
+      }
+    }
+    .triggerIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--line02);
+    }
+    &[data-state="open"] {
+      border-color: var(--primary);
+      .triggerIcon {
+        border: 0;
+      }
+    }
+  }
+}
+
+.triggerSizeDefault {
+  height: 36px;
+  padding: 7px 11px;
+}
+
+.triggerSizeSm {
+  height: 32px;
+  padding: 5px 11px;
+  border-radius: 6px;
+}
+
+.value {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.triggerIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--font-g);
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 50;
+  max-height: var(--radix-select-content-available-height);
+  min-width: 8rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid var(--line01);
+  border-radius: 8px;
+  background-color: var(--font-w);
+  color: var(--font-b);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  transform-origin: var(--radix-select-content-transform-origin);
+
+  &[data-state="open"] {
+    animation: select-fade-in 150ms ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: select-fade-out 120ms ease-in;
+  }
+
+  &[data-side="bottom"] {
+    animation-name: select-slide-down;
+  }
+
+  &[data-side="top"] {
+    animation-name: select-slide-up;
+  }
+}
+
+.contentPopper {
+  &[data-side="bottom"] {
+    transform: translateY(4px);
+  }
+
+  &[data-side="top"] {
+    transform: translateY(-4px);
+  }
+
+  &[data-side="left"] {
+    transform: translateX(-4px);
+  }
+
+  &[data-side="right"] {
+    transform: translateX(4px);
+  }
+}
+
+.viewport {
+  padding: 7px;
+}
+
+.viewportPopper {
+  width: 100%;
+  min-width: var(--radix-select-trigger-width);
+  height: var(--radix-select-trigger-height);
+}
+
+.label {
+  padding: 6px 8px;
+  color: var(--font-g);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 32px 8px 11px;
+  border-radius: 6px;
+  color: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+
+  &:focus-visible,
+  &[data-highlighted] {
+    background-color: var(--bg-box);
+  }
+
+  &[data-state="checked"] {
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: currentColor;
+  }
+}
+
+.itemIndicator {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  width: 14px;
+  height: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator {
+  pointer-events: none;
+  margin: 4px 0;
+  height: 1px;
+  background-color: var(--line01);
+}
+
+.scrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--font-g);
+  cursor: default;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@keyframes select-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes select-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes select-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes select-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

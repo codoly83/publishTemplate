@@ -1,0 +1,98 @@
+.tableContainer {
+  position: relative;
+  width: 100%;
+
+  .table {
+    width: 100%;
+    border-spacing: 0;
+  }
+  .tableCaption {
+    display: none;
+  }
+  .tableBody {
+    tr {
+      border-bottom: 1px solid var(--line01);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .tableHead {
+    background-color: var(--bg-box);
+    padding: 8px 16px;
+    border-right: 1px solid var(--line01);
+    color: var(--font-g);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    &:last-child {
+      border-right: none;
+    }
+  }
+  .tableCell {
+    background-color: var(--bg-base);
+    padding: 8px 16px;
+    border-right: 1px solid var(--line01);
+    color: var(--font-b);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &.typeHorizontal {
+    tr {
+      border-bottom: 1px solid var(--line01);
+      .tableHead {
+        text-align: left;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &.typeVertical {
+    .tableHeader {
+      tr {
+        border-bottom: 1px solid var(--line01);
+      }
+    }
+  }
+
+  &.variantDefault {
+    border: 1px solid var(--line01);
+    border-radius: 8px;
+    .tableHead,
+    .tableCell {
+      height: 48px;
+    }
+  }
+
+  &.variantSub {
+    .tableHeader {
+      tr {
+        border-bottom: none;
+      }
+    }
+    .tableHead,
+    .tableCell {
+      height: 40px;
+      border-right: 1px solid var(--line02);
+      &:last-child {
+        border-right: none;
+      }
+    }
+    .tableHead {
+      background-color: var(--btn-g);
+      color: var(--font-w);
+    }
+    .tableBody {
+      tr {
+        border-bottom: 1px solid var(--line02);
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: var(--font-b);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* Variants */
+  &.variantTint {
+    padding: 4px 8px;
+    border-radius: 4px;
+    &.colorBlue {
+      background-color: var(--blue-50);
+      color: var(--blue);
+    }
+    &.colorGreen {
+      background-color: var(--green-50);
+      color: var(--primary);
+    }
+    &.colorYellow {
+      background-color: var(--yellow-50);
+      color: var(--yellow);
+    }
+    &.colorRed {
+      background-color: var(--red-50);
+      color: var(--red);
+    }
+    &.colorPurple {
+      background-color: var(--purple-50);
+      color: var(--purple);
+    }
+    &.colorGray {
+      background-color: var(--gray-50);
+      color: var(--font-g);
+    }
+  }
+
+  &.variantSolid {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--font-w);
+    &.colorBlue {
+      background-color: var(--blue);
+    }
+    &.colorGreen {
+      background-color: var(--primary);
+    }
+    &.colorYellow {
+      background-color: var(--yellow);
+    }
+    &.colorRed {
+      background-color: var(--red);
+    }
+    &.colorPurple {
+      background-color: var(--purple);
+    }
+    &.colorGray {
+      background-color: var(--font-g);
+    }
+  }
+  &.variantStateYes {
+    color: var(--primary);
+  }
+  &.variantStateNo {
+    color: var(--red);
+  }
+}

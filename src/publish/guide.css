@@ -1,0 +1,34 @@
+.guide-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.guide-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--font-b);
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--line01);
+}
+
+.guide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: var(--bg-base);
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Hooks 샘플: useHtmlRootClass — <html>에 붙는 클래스 시각 확인 */
+html.publish-template-html-root-demo {
+  outline: 3px solid var(--color-primary, #3b82f6);
+  outline-offset: -3px;
+}

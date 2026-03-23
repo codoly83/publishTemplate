@@ -1,0 +1,383 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  padding: 10px 12px;
+
+  border-radius: 8px;
+  background-color: var(--font-w);
+  color: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    background-color 150ms ease, color 150ms ease;
+  &:not([data-variant="btnType"]) {
+    box-shadow: inset 0 0 0 1px var(--line02);
+    &:hover {
+      box-shadow: inset 0 0 0 1px var(--btn-g);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 1px var(--primary);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--font-b);
+      background-color: var(--line01);
+      box-shadow: inset 0 0 0 1px var(--line02);
+    }
+    &[aria-invalid="true"] {
+      box-shadow: inset 0 0 0 1px var(--red);
+    }
+
+    &[data-empty="true"] {
+      color: var(--font-lg);
+    }
+  }
+}
+
+.triggerText {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.triggerIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--font-g);
+}
+
+/* btnType variant */
+
+.triggerBtnType {
+  border-color: transparent;
+  background-color: transparent;
+  padding-inline: 0;
+  gap: 8px;
+  font-weight: bold;
+  &:disabled {
+    .triggerIconBtn {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  .triggerIconBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    box-shadow: inset 0 0 0 1px var(--line02);
+    border-radius: 8px;
+    background-color: var(--font-w);
+    transition: border-color 150ms ease, box-shadow 150ms ease,
+      background-color 150ms ease;
+  }
+
+  /* hover → 아이콘 버튼에 효과 전달 */
+  &:hover .triggerIconBtn {
+    box-shadow: inset 0 0 0 1px var(--btn-g);
+    background-color: var(--bg-box);
+  }
+
+  /* focus → 아이콘 버튼에 효과 전달 */
+  &:focus-visible .triggerIconBtn {
+    box-shadow: inset 0 0 0 1px var(--primary);
+  }
+
+  &[aria-invalid="true"] .triggerIconBtn {
+    box-shadow: inset 0 0 0 1px var(--red);
+  }
+}
+
+.content {
+  z-index: 50;
+  width: auto;
+  padding: 16px;
+  box-shadow: inset 0 0 0 1px var(--line01), 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: var(--font-w);
+}
+
+.calendar {
+  width: fit-content;
+}
+
+.calendarRoot {
+  width: fit-content;
+}
+
+.months {
+  display: flex;
+  flex-direction: column;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.monthCaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+}
+
+.captionLabel {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--font-b);
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--font-g);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+
+  &:hover {
+    background-color: var(--bg-box);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.chevron {
+  width: 24px;
+  height: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weekdays {
+  display: flex;
+}
+
+.weekday {
+  width: 32px;
+  height: 24px;
+  color: var(--font-b);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 24px;
+
+  &:first-child {
+    color: #f25757;
+  }
+}
+
+.week {
+  padding-top: 8px;
+  display: flex;
+}
+
+.day {
+  position: relative;
+  width: 32px;
+  height: 24px;
+  text-align: center;
+}
+
+.dayButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--font-b);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+
+  &:hover {
+    background-color: var(--bg-box);
+  }
+}
+
+.sunday {
+  .dayButton {
+    color: var(--red);
+  }
+}
+.today {
+  .dayButton {
+    position: relative;
+    font-weight: 600;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      z-index: 1;
+    }
+  }
+}
+
+.selected {
+  .dayButton {
+    background-color: var(--font-b);
+    color: var(--font-w);
+    font-weight: bold;
+
+    &:hover {
+      background-color: var(--btn-b);
+      color: var(--font-w);
+    }
+  }
+}
+
+.outside {
+  .dayButton {
+    opacity: 0.4;
+  }
+}
+
+.disabled {
+  .dayButton {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/* Range Picker */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+/* 범위 하이라이트 바 (::before 로 셀 배경 처리) */
+.rangeStart,
+.rangeEnd,
+.rangeMiddle {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: var(--blue-50);
+    z-index: 0;
+  }
+
+  .dayButton {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* 시작일: 오른쪽 절반부터 끝까지 하이라이트 */
+.rangeStart {
+  &::before {
+    left: 50%;
+    right: 0;
+  }
+
+  .dayButton {
+    background-color: var(--font-b);
+    color: var(--font-w);
+
+    &:hover {
+      background-color: var(--btn-b);
+      color: var(--font-w);
+    }
+  }
+}
+
+/* 종료일: 처음부터 왼쪽 절반까지 하이라이트 */
+.rangeEnd {
+  &::before {
+    left: 0;
+    right: 50%;
+  }
+
+  .dayButton {
+    background-color: var(--font-b);
+    color: var(--font-w);
+
+    &:hover {
+      background-color: var(--btn-b);
+      color: var(--font-w);
+    }
+  }
+}
+
+/* 중간 날짜: 전체 너비 하이라이트 */
+.rangeMiddle {
+  &::before {
+    left: 0;
+    right: 0;
+  }
+  &.sunday {
+    .dayButton {
+      color: var(--red);
+    }
+  }
+
+  .dayButton {
+    font-weight: 400;
+    background: transparent;
+    border-radius: 0;
+    color: var(--font-b);
+  }
+}
+
+/* 시작일 = 종료일 (같은 날 클릭) */
+.rangeStart.rangeEnd {
+  &::before {
+    display: none;
+  }
+}

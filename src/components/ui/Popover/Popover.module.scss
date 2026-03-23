@@ -1,0 +1,80 @@
+@keyframes popoverContentIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popoverContentOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.popoverContent {
+  z-index: 50;
+  transform-origin: var(--radix-popover-content-transform-origin);
+  border-radius: 8px;
+  border: 1px solid var(--line02);
+  background: var(--bg-base);
+  color: var(--font-b);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  outline: none;
+
+  &[data-state="open"] {
+    animation: popoverContentIn 0.15s ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: popoverContentOut 0.1s ease-in;
+  }
+
+  &.variantDefault {
+    /* 기본 스킨 */
+  }
+
+  &.sizeSm {
+    width: 16rem;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  &.sizeMd {
+    width: 18rem;
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  &.sizeLg {
+    width: 20rem;
+    padding: 20px;
+    font-size: 15px;
+  }
+}
+
+.popoverHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 14px;
+}
+
+.popoverTitle {
+  font-weight: 600;
+}
+
+.popoverDescription {
+  color: var(--font-g);
+  font-size: 13px;
+}

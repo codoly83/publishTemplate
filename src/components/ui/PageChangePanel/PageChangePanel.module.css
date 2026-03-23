@@ -1,0 +1,78 @@
+.pageChangeArea {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 8px 12px 8px 4px;
+  background-color: var(--font-w);
+  border: 1px solid var(--line01, #e5e7eb);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    .dragHandle span {
+      background-color: var(--font01, #374151);
+    }
+  }
+
+  /* 드래그 핸들 (grip dots 2×3) */
+  .dragHandle {
+    display: grid;
+    grid-template-columns: repeat(2, 4px);
+    grid-template-rows: repeat(3, 4px);
+    gap: 3px;
+    padding: 4px 6px;
+    flex-shrink: 0;
+    cursor: grab;
+
+    span {
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--font03, #d1d5db);
+      transition: background-color 0.15s ease;
+    }
+
+    &:hover span {
+      background-color: var(--font02, #9ca3af);
+    }
+  }
+
+  /* Select 그룹 (라벨 + Select) */
+  .selectGroup {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    cursor: default;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--font02, #6b7280);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .noDrag {
+    cursor: default;
+    min-width: 140px;
+  }
+
+  /* 그룹 구분선 */
+  .divider {
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: var(--line01, #e5e7eb);
+    flex-shrink: 0;
+  }
+}

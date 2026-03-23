@@ -1,0 +1,129 @@
+@theme {
+  --color-*: initial;
+
+  --primary: #00997a;
+
+  /* text */
+  --font-b: #1f2533;
+  --font-g: #7a8599;
+  --font-lg: #aab2bd;
+  --font-w: #ffffff;
+
+  /* background */
+  --bg-base: #ffffff;
+  --bg-container: #ebf0f5;
+  --bg-box: #f5f8fa;
+  --bg-row: #ffffff;
+
+  /* status */
+  --blue: #2b7bd6;
+  --red: #e73434;
+  --purple: #a63ac0;
+  --yellow: #ad7f23;
+
+  /* status bg */
+  --green-50: #e6faf3;
+  --blue-50: #ebf5ff;
+  --red-50: #ffebeb;
+  --purple-50: #faebff;
+  --yellow-50: #faf7e6;
+  --gray-50: #f0f6fa;
+
+  /* border */
+  --line01: #ebf0f5;
+  --line02: #dde4eb;
+
+  /* button */
+  --btn-b: #1f2533;
+  --btn-g: #b8c2cc;
+
+  /* gradient */
+  --gr01: #0aada3;
+  --gr02: #04bc90;
+  --gradient: linear-gradient(90deg, var(--gr01) 0%, var(--gr02) 100%);
+}
+.dark {
+  /* primary */
+  --primary: #04bc90;
+
+  /* text */
+  --font-b: #ffffff;
+  --font-g: #8d9199;
+  --font-lg: #5e6166;
+  --font-w: #17181a;
+
+  /* background */
+  --bg-base: #17181a;
+  --bg-container: #000000;
+  --bg-box: #222426;
+  --bg-row: #222426;
+
+  /* status */
+  --blue: #3794ff;
+  --red: #fa4646;
+  --purple: #c348e0;
+  --yellow: #d7a645;
+
+  /* status bg */
+  --green-50: #253d35;
+  --blue-50: #28364c;
+  --red-50: #472b2b;
+  --purple-50: #422b47;
+  --yellow-50: #403e32;
+  --gray-50: #363a40;
+
+  /* border */
+  --line01: #2d2f33;
+  --line02: #363940;
+
+  /* button */
+  --btn-b: #ffffff;
+  --btn-g: #767980;
+}
+
+/* alias */
+@theme inline {
+  --color-*: initial;
+
+  /* primary */
+  --color-primary: var(--primary);
+
+  /* text */
+  --color-font-b: var(--font-b);
+  --color-font-g: var(--font-g);
+  --color-font-lg: var(--font-lg);
+  --color-font-w: var(--font-w);
+
+  /* background */
+  --color-base: var(--bg-base);
+  --color-container: var(--bg-container);
+  --color-box: var(--bg-box);
+  --color-row: var(--bg-row);
+
+  /* status */
+  --color-blue: var(--blue);
+  --color-red: var(--red);
+  --color-purple: var(--purple);
+  --color-yellow: var(--yellow);
+
+  /* status bg */
+  --color-green-50: var(--green-50);
+  --color-blue-50: var(--blue-50);
+  --color-red-50: var(--red-50);
+  --color-purple-50: var(--purple-50);
+  --color-yellow-50: var(--yellow-50);
+  --color-gray-50: var(--gray-50);
+
+  /* border */
+  --color-line01: var(--line01);
+  --color-line02: var(--line02);
+
+  /* button */
+  --color-btn-b: var(--btn-b);
+  --color-btn-g: var(--btn-g);
+
+  /* gradient */
+  --color-gr01: var(--gr01);
+  --color-gr02: var(--gr02);
+  --color-gradient: var(--gradient);
+}
