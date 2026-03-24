@@ -473,6 +473,11 @@ type DateRangeTwoPickersProps = Omit<
    */
   fromName?: string;
   toName?: string;
+  /**
+   * 각 트리거에 리셋(선택 해제) 버튼을 표시합니다. 기본은 표시하지 않습니다.
+   * (단일 DatePicker의 `resetEnabled`와 동일한 의미)
+   */
+  resetEnabled?: boolean;
 };
 
 function isBefore(a: Date, b: Date): boolean {
@@ -514,6 +519,7 @@ function DateRangePickerTwoPickers({
   calendarProps,
   fromName,
   toName,
+  resetEnabled = false,
   className,
   ...rest
 }: DateRangeTwoPickersProps) {
@@ -604,7 +610,7 @@ function DateRangePickerTwoPickers({
           placeholder={startPlaceholder}
           value={committed?.from}
           onValueChange={handleFromChange}
-          resetEnabled
+          resetEnabled={resetEnabled}
           calendarProps={startCalendarProps}
           name={fromName}
         />
@@ -618,7 +624,7 @@ function DateRangePickerTwoPickers({
           placeholder={endPlaceholder}
           value={committed?.to}
           onValueChange={handleToChange}
-          resetEnabled
+          resetEnabled={resetEnabled}
           calendarProps={endCalendarProps}
           name={toName}
         />

@@ -57,6 +57,13 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "card",
+    title: "Card",
+    path: "/guide/card",
+    description: "Card의 헤더, 액션, 본문, 푸터 조합을 확인합니다.",
+    section: "components",
+  },
+  {
     id: "checkbox",
     title: "Checkbox",
     path: "/guide/checkbox",
@@ -319,6 +326,14 @@ export const publishGuideNavItems: PublishGuideNavItem[] = [
     path: "/guide/scroll-top-button",
     description:
       "일정 스크롤 이상 노출형, 위로 스크롤 시에만 노출형 Top 버튼 UX 패턴을 비교합니다.",
+    section: "pageFeatures",
+  },
+  {
+    id: "pageSvgColor",
+    title: "SVG 색상 변경",
+    path: "/guide/svg-color",
+    description:
+      "SVG를 컴포넌트로 불러오는 방식과 일반 파일 URL로 불러온 뒤 색상을 바꾸는 방식을 비교합니다.",
     section: "pageFeatures",
   },
   {

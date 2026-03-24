@@ -3,20 +3,21 @@ import { useTheme } from "@/providers/theme-provider";
 
 import { NavLink, Outlet } from "react-router-dom";
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ListIcon } from "lucide-react";
 import { GUIDE_NAV_SECTIONS, publishGuideNavItems } from "./sampleMeta";
+import { GuideScrollToSearchMatch } from "./GuideScrollToSearchMatch";
+import { GuideAutoQuickMenu } from "./GuideAutoQuickMenu";
 import { GuideSearch } from "./GuideSearch";
 import "./guide.css";
+import { useRef } from "react";
 
 function Guide() {
   const { setTheme } = useTheme();
+  const guideOutletRef = useRef<HTMLDivElement | null>(null);
   return (
     <div className="flex h-screen flex-col">
       <header className="flex items-center justify-between gap-4 border-b border-gr01 bg-base px-4 py-3">
-        <NavLink
-          to="/publish"
-          className="text-primary font-bold shrink-0"
-        >
+        <NavLink to="/guide/ialist" className="text-primary font-bold shrink-0">
           Publish Guide
         </NavLink>
 
@@ -35,7 +36,21 @@ function Guide() {
       <main className="flex-1 flex gap-4 p-4 bg-line01 overflow-hidden">
         <aside className="flex flex-col bg-base rounded-2xl w-60">
           <div className="guide-title">
-            총 {publishGuideNavItems.length}개의 샘플 페이지
+            <NavLink
+              to="/guide/ialist"
+              className={({ isActive }) =>
+                [
+                  "rounded px-2 py-1 text-sm flex items-center font-bold justify-between",
+                  ,
+                  isActive ? "bg-primary text-font-w" : "hover:bg-container",
+                ]
+                  .filter(Boolean)
+                  .join(" ")
+              }
+            >
+              <span>Publish ialist</span>
+              <ListIcon size={16} aria-hidden />
+            </NavLink>
           </div>
           <div className="flex-1 flex flex-col gap-2 overflow-y-auto my-3 px-3">
             {GUIDE_NAV_SECTIONS.map((section, sectionIndex) => {
@@ -50,6 +65,7 @@ function Guide() {
                     }`}
                   >
                     {section.label}
+                    <span className="ml-1 text-font-b">({items.length})</span>
                   </div>
                   {items.map((item) => (
                     <NavLink
@@ -86,8 +102,13 @@ function Guide() {
           </div>
         </aside>
 
-        <div className="flex-1 rounded-2xl border border-line02 bg-base overflow-hidden">
+        <div
+          ref={guideOutletRef}
+          className="relative flex-1 rounded-2xl border border-line02 bg-base overflow-hidden"
+        >
+          <GuideScrollToSearchMatch />
           <Outlet />
+          <GuideAutoQuickMenu hostRef={guideOutletRef} />
         </div>
       </main>
     </div>

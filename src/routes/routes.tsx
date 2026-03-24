@@ -1,6 +1,7 @@
 // Route definitions are exported for reuse in tests (MemoryRouter) and app router.
 import { RootLayout } from "../components/layout/RootLayout";
 import { Navigate } from "react-router-dom";
+import type { ComponentType } from "react";
 
 // Publish Sample Pages
 import { DefaultLayout } from "@/components/layout/DefaultLayout";
@@ -27,6 +28,7 @@ import SampleScrollAreaPage from "@/publish/guide/components/sampleScrollArea";
 import SampleSelectPage from "@/publish/guide/components/sampleSelect";
 import SampleSwitchPage from "@/publish/guide/components/sampleToggle";
 import SampleButtonPage from "@/publish/guide/components/sampleButton";
+import SampleCardPage from "@/publish/guide/components/sampleCard";
 import SampleTablePage from "@/publish/guide/components/sampleTable";
 import SampleTabsPage from "@/publish/guide/components/sampleTabs";
 import SampleAlertDialogPage from "@/publish/guide/components/sampleAlertDialog";
@@ -47,6 +49,7 @@ import SampleSkeletonPage from "@/publish/guide/components/sampleSkeleton";
 import SampleSortableListPage from "@/publish/guide/components/sampleSortableList";
 import SamplePageScrollSpy from "@/publish/guide/pageFeatures/samplePageScrollSpy";
 import SampleScrollTopButtonPage from "@/publish/guide/pageFeatures/sampleScrollTopButton";
+import SampleSvgColorPage from "@/publish/guide/pageFeatures/sampleSvgColor";
 import SampleSwiperPage from "@/publish/guide/components/sampleSwiper";
 import SampleTextListPage from "@/publish/guide/components/sampleTextList";
 import SampleTreeViewPage from "@/publish/guide/components/sampleTreeView";
@@ -64,6 +67,34 @@ const titleByPath = publishGuideNavItems.reduce<Record<string, string>>(
 function getGuideChildTitle(path: string) {
   return titleByPath[`/guide/${path}`];
 }
+
+type GuidePageModule = {
+  default: ComponentType;
+};
+
+const publishPagesChildren = Object.entries(
+  import.meta.glob<GuidePageModule>("/src/publish/pages/**/*.tsx", {
+    eager: true,
+  }),
+)
+  .map(([filePath, module]) => {
+    const relativePath = filePath
+      .replace("/src/publish/pages/", "")
+      .replace(/\.tsx$/, "");
+    const routePath = relativePath.replace(/\/index$/, "");
+    const PageComponent = module.default;
+
+    return {
+      path: routePath,
+      element: <PageComponent />,
+      handle: {
+        title: titleByPath[`/pages/${routePath}`] ?? routePath,
+      },
+    };
+  })
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+const firstPublishPagePath = publishPagesChildren[0]?.path;
 export const routes = [
   {
     path: "/",
@@ -74,7 +105,9 @@ export const routes = [
       </>
     ),
     handle: { title: "Home" },
-    children: [{ index: true, element: <Navigate to="/guide" replace /> }],
+    children: [
+      { index: true, element: <Navigate to="/guide/ialist" replace /> },
+    ],
   },
 
   {
@@ -87,7 +120,15 @@ export const routes = [
     ),
     handle: { title: "Guide" },
     children: [
-      { index: true, element: <PublishingList />, handle: { title: "List" } },
+      {
+        index: true,
+        element: <Navigate to="/guide/ialist" replace />,
+      },
+      {
+        path: "ialist",
+        element: <PublishingList />,
+        handle: { title: "List" },
+      },
       {
         path: "accordion",
         element: <SampleAccordionPage />,
@@ -102,6 +143,11 @@ export const routes = [
         path: "button",
         element: <SampleButtonPage />,
         handle: { title: getGuideChildTitle("button") },
+      },
+      {
+        path: "card",
+        element: <SampleCardPage />,
+        handle: { title: getGuideChildTitle("card") },
       },
       {
         path: "alert-dialog",
@@ -287,6 +333,11 @@ export const routes = [
         handle: { title: getGuideChildTitle("scroll-top-button") },
       },
       {
+        path: "svg-color",
+        element: <SampleSvgColorPage />,
+        handle: { title: getGuideChildTitle("svg-color") },
+      },
+      {
         path: "swiper",
         element: <SampleSwiperPage />,
         handle: { title: getGuideChildTitle("swiper") },
@@ -336,6 +387,29 @@ export const routes = [
         element: <SampleLayoutBasicPage />,
         handle: { title: titleByPath["/guide/layout-basic"] },
       },
+    ],
+  },
+  {
+    path: "/publish",
+    element: (
+      <>
+        <RouteTitleSync />
+        <PageLayoutBasic />
+      </>
+    ),
+    handle: { title: "Publish" },
+    children: [
+      ...(firstPublishPagePath
+        ? [
+            {
+              index: true,
+              element: (
+                <Navigate to={`/publish/${firstPublishPagePath}`} replace />
+              ),
+            },
+          ]
+        : []),
+      ...publishPagesChildren,
     ],
   },
 ];

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+  Button,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -21,9 +22,7 @@ function SampleTooltipPage() {
 <TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
-        툴팁이 보이는 버튼
-      </button>
+      <Button>툴팁이 보이는 버튼</Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>이것은 기본 툴팁입니다.</p>
@@ -35,9 +34,7 @@ function SampleTooltipPage() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
-                  툴팁이 보이는 버튼
-                </button>
+                <Button>툴팁이 보이는 버튼</Button>
               </TooltipTrigger>
               <TooltipContent>
                 <p>이것은 기본 툴팁입니다.</p>
@@ -54,9 +51,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           기본
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="default">
         <p>기본 툴팁 스타일</p>
@@ -67,9 +64,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-blue-50 rounded-md hover:bg-blue-100">
+        <Button variant="ghost" color="default">
           라이트
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="light">
         <p>라이트 툴팁 스타일</p>
@@ -80,9 +77,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900">
+        <Button variant="default" color="black">
           다크
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="dark">
         <p>다크 툴팁 스타일</p>
@@ -93,9 +90,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-red-50 rounded-md hover:bg-red-100">
+        <Button variant="text" color="default">
           에러
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="error">
         <p>에러 툴팁 스타일</p>
@@ -106,9 +103,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-green-50 rounded-md hover:bg-green-100">
+        <Button variant="outline" color="default">
           성공
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="success">
         <p>성공 툴팁 스타일</p>
@@ -122,9 +119,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     기본
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="default">
                   <p>기본 툴팁 스타일</p>
@@ -135,9 +132,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-blue-50 rounded-md hover:bg-blue-100">
+                  <Button variant="ghost" color="default">
                     라이트
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="light">
                   <p>라이트 툴팁 스타일</p>
@@ -148,9 +145,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900">
+                  <Button variant="default" color="black">
                     다크
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="dark">
                   <p>다크 툴팁 스타일</p>
@@ -161,9 +158,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-red-50 rounded-md hover:bg-red-100">
+                  <Button variant="text" color="default">
                     에러
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="error">
                   <p>에러 툴팁 스타일</p>
@@ -174,9 +171,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-green-50 rounded-md hover:bg-green-100">
+                  <Button variant="outline" color="default">
                     성공
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="success">
                   <p>성공 툴팁 스타일</p>
@@ -194,9 +191,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           작은 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent size="sm">
         <p>작은 크기의 툴팁</p>
@@ -207,9 +204,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           중간 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent size="md">
         <p>중간 크기의 툴팁</p>
@@ -220,9 +217,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           큰 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent size="lg">
         <p>큰 크기의 툴팁 (긴 텍스트도 잘 표시됩니다)</p>
@@ -236,9 +233,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     작은 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent size="sm">
                   <p>작은 크기의 툴팁</p>
@@ -249,9 +246,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     중간 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent size="md">
                   <p>중간 크기의 툴팁</p>
@@ -262,9 +259,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     큰 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent size="lg">
                   <p>큰 크기의 툴팁 (긴 텍스트도 잘 표시됩니다)</p>
@@ -282,9 +279,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           화살표 있음
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent arrow={true}>
         <p>화살표가 있는 기본 툴팁</p>
@@ -295,9 +292,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           화살표 없음
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent arrow={false}>
         <p>화살표가 없는 툴팁</p>
@@ -311,9 +308,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     화살표 있음
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent arrow={true}>
                   <p>화살표가 있는 기본 툴팁</p>
@@ -324,9 +321,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     화살표 없음
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent arrow={false}>
                   <p>화살표가 없는 툴팁</p>
@@ -344,9 +341,9 @@ function SampleTooltipPage() {
   <TooltipProvider>
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+        <Button variant="default" color="default">
           버튼
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>버튼 요소에 툴팁</p>
@@ -399,9 +396,9 @@ function SampleTooltipPage() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                  <Button variant="default" color="default">
                     버튼
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>버튼 요소에 툴팁</p>
@@ -458,9 +455,9 @@ function SampleTooltipPage() {
   <TooltipProvider delay="fast">
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+        <Button variant="ghost" color="gray">
           빠른 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>빠르게 나타나는 툴팁</p>
@@ -471,9 +468,9 @@ function SampleTooltipPage() {
   <TooltipProvider delay="default">
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+        <Button variant="ghost" color="gray">
           기본 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>기본 속도로 나타나는 툴팁</p>
@@ -484,9 +481,9 @@ function SampleTooltipPage() {
   <TooltipProvider delay="slow">
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+        <Button variant="ghost" color="gray">
           느린 툴팁
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>느리게 나타나는 툴팁</p>
@@ -500,9 +497,9 @@ function SampleTooltipPage() {
             <TooltipProvider delay="fast">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+                  <Button variant="ghost" color="gray">
                     빠른 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>빠르게 나타나는 툴팁</p>
@@ -513,9 +510,9 @@ function SampleTooltipPage() {
             <TooltipProvider delay="default">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+                  <Button variant="ghost" color="gray">
                     기본 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>기본 속도로 나타나는 툴팁</p>
@@ -526,9 +523,9 @@ function SampleTooltipPage() {
             <TooltipProvider delay="slow">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-purple-100 rounded-md hover:bg-purple-200">
+                  <Button variant="ghost" color="gray">
                     느린 툴팁
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>느리게 나타나는 툴팁</p>
@@ -545,9 +542,9 @@ function SampleTooltipPage() {
 <TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+      <Button variant="default" size="md" color="default">
         정보 버튼
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent size="lg" className="max-w-xs">
       <div className="space-y-2">
@@ -576,9 +573,9 @@ function SampleTooltipPage() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                <Button variant="default" size="md" color="default">
                   정보 버튼
-                </button>
+                </Button>
               </TooltipTrigger>
               <TooltipContent size="lg" className="max-w-xs">
                 <div className="space-y-2">
@@ -612,9 +609,9 @@ function SampleTooltipPage() {
   <div className="flex gap-4">
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           첫 번째 버튼
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>첫 번째 툴팁</p>
@@ -623,9 +620,9 @@ function SampleTooltipPage() {
 
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           두 번째 버튼
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="success">
         <p>두 번째 툴팁</p>
@@ -634,9 +631,9 @@ function SampleTooltipPage() {
 
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+        <Button variant="outline" color="grayBg">
           세 번째 버튼
-        </button>
+        </Button>
       </TooltipTrigger>
       <TooltipContent variant="error">
         <p>세 번째 툴팁</p>
@@ -650,9 +647,9 @@ function SampleTooltipPage() {
             <div className="flex gap-4">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     첫 번째 버튼
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>첫 번째 툴팁</p>
@@ -661,9 +658,9 @@ function SampleTooltipPage() {
 
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     두 번째 버튼
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="success">
                   <p>두 번째 툴팁</p>
@@ -672,9 +669,9 @@ function SampleTooltipPage() {
 
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">
+                  <Button variant="outline" color="grayBg">
                     세 번째 버튼
-                  </button>
+                  </Button>
                 </TooltipTrigger>
                 <TooltipContent variant="error">
                   <p>세 번째 툴팁</p>
@@ -692,9 +689,9 @@ function SampleTooltipPage() {
 <TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <button className="px-3 py-2 bg-blue-500 text-white rounded-md">
+      <Button variant="default" color="default">
         포탈 없이
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent portal={false}>
       <p>이 툴팁은 포탈을 사용하지 않고 트리거 요소 바로 아래에 렌더링됩니다.</p>
@@ -713,9 +710,9 @@ return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className="px-3 py-2 bg-green-500 text-white rounded-md">
+          <Button variant="default" color="gray">
             컨테이너 안에
-          </button>
+          </Button>
         </TooltipTrigger>
         <TooltipContent
                     container={containerRef as React.RefObject<HTMLElement>}
@@ -731,9 +728,9 @@ return (
 <TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <button className="px-3 py-2 bg-purple-500 text-white rounded-md">
+      <Button variant="default" color="black">
         기본 포탈
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>이 툴팁은 기본적으로 body에 포탈로 렌더링됩니다.</p>
@@ -748,9 +745,9 @@ return (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                    <Button variant="default" color="default">
                       포탈 없이
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent portal={false}>
                     <p>
@@ -769,9 +766,9 @@ return (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="px-3 py-2 bg-green-500 text-white rounded-md">
+                    <Button variant="default" color="gray">
                       컨테이너 안에
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent
                     container={containerRef as React.RefObject<HTMLElement>}
@@ -789,9 +786,9 @@ return (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="px-3 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors">
+                    <Button variant="default" color="black">
                       기본 포탈
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>이 툴팁은 기본적으로 body에 포탈로 렌더링됩니다.</p>
@@ -809,9 +806,9 @@ return (
 <TooltipProvider>
   <Tooltip clickMode>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-blue-500 text-white rounded-md">
+      <Button variant="default" size="md" color="default">
         클릭 모드 툴팁
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>트리거를 눌렀다 떼면(pointerup) 열고 닫습니다.</p>
@@ -825,9 +822,9 @@ return (
 <TooltipProvider>
   <Tooltip clickMode defaultOpen>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-purple-500 text-white rounded-md">
+      <Button variant="default" size="md" color="black">
         기본 열린 클릭 모드
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>마운트 시 열린 상태로 시작합니다.</p>
@@ -839,9 +836,9 @@ return (
 <TooltipProvider>
   <Tooltip clickMode>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-red-500 text-white rounded-md">
+      <Button variant="outline" size="md" color="default">
         닫기 버튼 있음
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent showCloseButton onClose={() => console.log("닫힘")}>
       <p>showCloseButton으로 X 버튼이 붙습니다.</p>
@@ -853,9 +850,9 @@ return (
 <TooltipProvider>
   <Tooltip defaultOpen>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-green-500 text-white rounded-md">
+      <Button variant="ghost" size="md" color="default">
         hover + defaultOpen
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>hover로 열리고, defaultOpen이면 처음부터 열려 있습니다.</p>
@@ -867,9 +864,9 @@ return (
 <TooltipProvider>
   <Tooltip>
     <TooltipTrigger asChild>
-      <button className="px-4 py-2 bg-yellow-500 text-white rounded-md">
+      <Button variant="text" size="md" color="default">
         일반 hover
-      </button>
+      </Button>
     </TooltipTrigger>
     <TooltipContent>
       <p>트리거에 포인터를 올리면 열립니다.</p>
@@ -887,9 +884,9 @@ return (
                 <TooltipProvider>
                   <Tooltip clickMode>
                     <TooltipTrigger asChild>
-                      <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                      <Button variant="default" size="md" color="default">
                         클릭 모드 툴팁
-                      </button>
+                      </Button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>
@@ -909,9 +906,9 @@ return (
                 <TooltipProvider>
                   <Tooltip clickMode defaultOpen>
                     <TooltipTrigger asChild>
-                      <button className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors">
+                      <Button variant="default" size="md" color="black">
                         기본 열린 클릭 모드
-                      </button>
+                      </Button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>
@@ -931,9 +928,9 @@ return (
               <TooltipProvider>
                 <Tooltip clickMode defaultOpen>
                   <TooltipTrigger asChild>
-                    <button className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors">
+                    <Button variant="outline" size="md" color="default">
                       닫기 버튼 있음
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent showCloseButton>
                     <p>이 툴팁은 닫기 버튼이 있습니다.</p>
@@ -955,9 +952,9 @@ return (
               <TooltipProvider>
                 <Tooltip defaultOpen>
                   <TooltipTrigger asChild>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors">
+                    <Button variant="ghost" size="md" color="default">
                       기본 열림 (hover)
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>clickMode가 아닐 때는 Radix 기본 hover 동작입니다.</p>
@@ -977,9 +974,9 @@ return (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors">
+                    <Button variant="text" size="md" color="default">
                       일반 hover 툴팁
-                    </button>
+                    </Button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>clickMode 없이 기본 동작(hover)입니다.</p>

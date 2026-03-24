@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui";
 import { useRemainingHeight } from "@/hooks/useRemainingHeight";
-import { useState } from "react";
+import {
+  scrollElementIntoViewInContainer,
+  useScrollSpy,
+} from "@/hooks/useScrollSpy";
+import { useMemo, useRef, useState } from "react";
 import { GuideBox } from "@/publish/guide/GuideBox";
+import { GuideQuickMenu } from "@/publish/guide/components";
 
 export function HooksSampleRemainingHeightContainerPanel() {
   const [tallHeader, setTallHeader] = useState(false);
@@ -145,20 +150,62 @@ const {
 }
 
 function SampleUseRemainingHeight() {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const sections = useMemo(
+    () => [
+      {
+        id: "section-use-remaining-height-container",
+        label: "컨테이너 기준",
+      },
+      {
+        id: "section-use-remaining-height-viewport",
+        label: "뷰포트 기준",
+      },
+    ],
+    [],
+  );
+  const sectionIds = useMemo(
+    () => sections.map((section) => section.id),
+    [sections],
+  );
+  const activeSectionId = useScrollSpy(contentRef, sectionIds, {
+    activeLineRatio: 0.22,
+  });
+
+  const scrollToSection = (id: string) => {
+    const root = contentRef.current;
+    if (!root) return;
+    scrollElementIntoViewInContainer(root, id, {
+      behavior: "smooth",
+      offsetTop: 8,
+    });
+  };
+
+  const scrollToTop = () => {
+    contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="guide-layout">
       <h1 className="guide-title">useRemainingHeight</h1>
-      <div className="guide-content">
-        <p className="text-sm text-font-g mb-4">
-          컨테이너 기준과 뷰포트 기준 케이스를 함께 확인합니다.
-        </p>
-        <div className="mb-6">
-          <p className="text-xs text-font-g mb-2">컨테이너 기준</p>
+      <div
+        ref={contentRef}
+        className="guide-content relative"
+        data-guide-quick-menu="off"
+      >
+        <section id="section-use-remaining-height-container">
           <HooksSampleRemainingHeightContainerPanel />
-        </div>
-        <p className="text-xs text-font-g mb-2">뷰포트(100vh) 기준</p>
-        <HooksSampleRemainingHeightViewportPanel />
+        </section>
+        <section id="section-use-remaining-height-viewport">
+          <HooksSampleRemainingHeightViewportPanel />
+        </section>
       </div>
+      <GuideQuickMenu
+        sections={sections}
+        activeSectionId={activeSectionId}
+        onSelectSection={scrollToSection}
+        onScrollTop={scrollToTop}
+      />
     </div>
   );
 }

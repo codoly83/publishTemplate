@@ -5,12 +5,12 @@ function SampleTextListPage() {
   return (
     <div className="guide-layout">
       <h1 className="guide-title">TextList</h1>
-      <p className="text-muted-foreground mb-6 max-w-2xl text-sm">
-        마커(•, ★, ■, 1.2.3., ①…) 타입을 `type`/`items[]` 조합으로 바꾸면서,
-        `size`, `gap`, `start`까지 한 번에 제어할 수 있는 리스트 컴포넌트입니다.
-      </p>
-
       <div className="guide-content">
+        <p className="text-muted-foreground mb-6 max-w-2xl text-sm">
+          마커(•, ★, ■, 1.2.3., ①…) 타입을 `type`/`items[]` 조합으로 바꾸면서,
+          `size`, `gap`, `start`까지 한 번에 제어할 수 있는 리스트
+          컴포넌트입니다.
+        </p>
         <GuideBox
           title="기본 · size / gap / start"
           description="dot(기본) + sm/lg 비교, decimal 시작 번호 변경 예시입니다."

@@ -142,6 +142,90 @@
   }
 }
 
+.multiTrigger {
+  cursor: pointer;
+  min-width: 0;
+}
+
+.multiTriggerPlaceholder {
+  color: var(--font-lg);
+}
+
+.multiValueText {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.multiCount {
+  color: var(--font-g);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.multiContent {
+  min-width: var(--radix-popover-trigger-width);
+  padding: 8px;
+}
+
+.multiList {
+  display: flex;
+  max-height: 280px;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.multiItem {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--bg-box);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+}
+
+.multiItemChecked {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.multiItemIndicator {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .content {
   position: relative;
   z-index: 50;

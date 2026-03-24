@@ -2,6 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Button } from "@/components/ui/Button/Button";
 import { Icon } from "@/components/ui/Icon/Icon";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/Popover/Popover";
 import { Select as SelectPrimitive } from "radix-ui";
 import * as React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -325,6 +326,186 @@ export type SelectSimpleProps = Omit<SelectProps, "children"> &
     id?: string;
   };
 
+export type SelectMultipleProps = VariantProps<typeof selectTriggerVariants> & {
+  options: SelectOption[];
+  value?: string[];
+  defaultValue?: string[];
+  onValueChange?: (nextValue: string[]) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
+  triggerClassName?: string;
+  contentClassName?: string;
+  id?: string;
+  label?: React.ReactNode;
+  resetEnabled?: boolean;
+  resetLabel?: string;
+};
+
+function SelectMultiple({
+  options,
+  value,
+  defaultValue,
+  onValueChange,
+  placeholder = "선택",
+  disabled = false,
+  className,
+  triggerClassName,
+  contentClassName,
+  id: idProp,
+  label,
+  size,
+  variant,
+  resetEnabled = false,
+  resetLabel = "리셋",
+}: SelectMultipleProps) {
+  const [open, setOpen] = React.useState(false);
+  const [internalValue, setInternalValue] = React.useState<string[]>(
+    defaultValue ?? []
+  );
+  const isControlled = value !== undefined;
+  const selectedValues = isControlled ? value : internalValue;
+  const uid = React.useId();
+  const triggerId = idProp ?? uid;
+  const selectedSet = React.useMemo(() => new Set(selectedValues), [selectedValues]);
+
+  React.useEffect(() => {
+    if (!isControlled) {
+      setInternalValue(defaultValue ?? []);
+    }
+  }, [defaultValue, isControlled]);
+
+  const setNextValue = React.useCallback(
+    (nextValue: string[]) => {
+      if (!isControlled) setInternalValue(nextValue);
+      onValueChange?.(nextValue);
+    },
+    [isControlled, onValueChange]
+  );
+
+  const handleToggle = React.useCallback(
+    (target: string) => {
+      if (disabled) return;
+      const exists = selectedSet.has(target);
+      const nextValue = exists
+        ? selectedValues.filter((candidate) => candidate !== target)
+        : [...selectedValues, target];
+      setNextValue(nextValue);
+    },
+    [disabled, selectedSet, selectedValues, setNextValue]
+  );
+
+  const selectedLabels = options
+    .filter((option) => selectedSet.has(option.value))
+    .map((option) => option.label)
+    .filter((label): label is string => typeof label === "string");
+
+  const triggerText =
+    selectedLabels.length === 0 ? placeholder : selectedLabels.join(", ");
+
+  const hasValue = selectedValues.length > 0;
+
+  return (
+    <div
+      data-slot="select-multiple"
+      className={cn(
+        "flex w-full min-w-0 flex-row flex-wrap items-center gap-2",
+        className
+      )}
+    >
+      {label != null && label !== "" ? (
+        <label
+          htmlFor={triggerId}
+          className="shrink-0 text-sm font-medium text-font-b"
+        >
+          {label}
+        </label>
+      ) : null}
+      <div className="min-w-0 flex-1">
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <button
+              id={triggerId}
+              type="button"
+              disabled={disabled}
+              className={cn(
+                selectTriggerVariants({ size, variant }),
+                styles.multiTrigger,
+                selectedLabels.length === 0 && styles.multiTriggerPlaceholder,
+                triggerClassName
+              )}
+            >
+              <span className={styles.value}>
+                <span className={styles.multiValueText}>{triggerText}</span>
+              </span>
+              <span className={styles.triggerRight}>
+                {resetEnabled && hasValue && !disabled ? (
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="icon-sm"
+                    shape="square"
+                    color="gray"
+                    aria-label={resetLabel}
+                    className={styles.resetButton}
+                    onPointerDown={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setNextValue([]);
+                    }}
+                  >
+                    <span>
+                      <Icon name="btn-close" size={16} />
+                    </span>
+                  </Button>
+                ) : null}
+                {hasValue ? (
+                  <span className={styles.multiCount}>{selectedValues.length}개</span>
+                ) : null}
+                <span className={styles.triggerIcon}>
+                  <IoMdArrowDropdown />
+                </span>
+              </span>
+            </button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            side="bottom"
+            className={cn(styles.multiContent, contentClassName)}
+          >
+            <div className={styles.multiList}>
+              {options.map((option) => {
+                const checked = selectedSet.has(option.value);
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    className={cn(
+                      styles.multiItem,
+                      checked && styles.multiItemChecked
+                    )}
+                    onClick={() => handleToggle(option.value)}
+                    disabled={option.disabled}
+                  >
+                    <span>{option.label}</span>
+                    <span className={styles.multiItemIndicator} aria-hidden="true">
+                      {checked ? <CheckIcon /> : null}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
+    </div>
+  );
+}
+
 /**
  * label + options만 넘기면 트리거·목록을 한 번에 구성합니다. (한 줄 폼용)
  *
@@ -399,6 +580,7 @@ export {
   SelectScrollUpButton,
   SelectSeparator,
   SelectSimple,
+  SelectMultiple,
   SelectTrigger,
   SelectValue,
 };

@@ -92,11 +92,16 @@ export {
   SelectScrollDownButton,
   SelectScrollUpButton,
   SelectSeparator,
+  SelectMultiple,
   SelectSimple,
   SelectTrigger,
   SelectValue,
 } from "./Select/Select";
-export type { SelectOption, SelectSimpleProps } from "./Select/Select";
+export type {
+  SelectMultipleProps,
+  SelectOption,
+  SelectSimpleProps,
+} from "./Select/Select";
 export {
   Table,
   TableBody,

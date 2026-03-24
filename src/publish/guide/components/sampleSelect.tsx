@@ -1,4 +1,6 @@
+import * as React from "react";
 import {
+  SelectMultiple,
   Select,
   SelectContent,
   SelectGroup,
@@ -19,6 +21,11 @@ const statusOptions = [
 ];
 
 function SampleSelectPage() {
+  const [selectedChannels, setSelectedChannels] = React.useState<string[]>([
+    "email",
+    "push",
+  ]);
+
   return (
     <div className="guide-layout">
       <h1 className="guide-title">Select Samples</h1>
@@ -229,6 +236,57 @@ function SampleSelectPage() {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+        </GuideBox>
+
+        <GuideBox
+          title="multiple select"
+          description="한 개가 아닌 여러 항목을 동시에 선택할 수 있는 SelectMultiple 사용 예시입니다."
+          code={`
+const channelOptions = [
+  { value: "email", label: "이메일" },
+  { value: "sms", label: "SMS" },
+  { value: "push", label: "푸시 알림" },
+  { value: "kakao", label: "카카오 알림톡" },
+];
+
+const [selectedChannels, setSelectedChannels] = React.useState<string[]>([
+  "email",
+  "push",
+]);
+
+<SelectMultiple
+  label="알림 채널"
+  options={channelOptions}
+  value={selectedChannels}
+  onValueChange={setSelectedChannels}
+  placeholder="채널을 선택하세요"
+/>
+          `}
+        >
+          <div className="max-w-xl space-y-3">
+            <SelectMultiple
+              label="알림 채널"
+              options={[
+                { value: "email", label: "이메일" },
+                { value: "sms", label: "SMS" },
+                { value: "push", label: "푸시 알림" },
+                { value: "kakao", label: "카카오 알림톡" },
+                { value: "kakao1", label: "카카오 알림톡1" },
+                { value: "kakao2", label: "카카오 알림톡2" },
+                { value: "kakao3", label: "카카오 알림톡3" },
+                { value: "kakao4", label: "카카오 알림톡4" },
+              ]}
+              value={selectedChannels}
+              onValueChange={setSelectedChannels}
+              placeholder="채널을 선택하세요"
+            />
+            <div className="text-sm text-font-g">
+              선택값:{" "}
+              {selectedChannels.length > 0
+                ? selectedChannels.join(", ")
+                : "선택된 항목 없음"}
             </div>
           </div>
         </GuideBox>

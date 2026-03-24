@@ -6,6 +6,10 @@ import {
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
+import {
+  GUIDE_SEARCH_SCROLL_STATE_KEY,
+  GUIDE_SEARCH_SCROLL_STORAGE_KEY,
+} from "./guideScrollToSearch";
 import { getGuideSampleSource } from "./guideSampleSourceIndex";
 import {
   GUIDE_NAV_SECTIONS,
@@ -183,11 +187,24 @@ function GuideSearch({ items }: { items: PublishGuideNavItem[] }) {
   const goTo = React.useCallback(
     (item: PublishGuideNavItem, searchQuery: string) => {
       const hash = buildScrollHash(searchQuery, item);
+      const scrollText =
+        pickTextFragment(searchQuery, item) || searchQuery.trim();
       if (item.openInNewTab) {
+        try {
+          sessionStorage.setItem(
+            GUIDE_SEARCH_SCROLL_STORAGE_KEY,
+            JSON.stringify({ path: item.path, text: scrollText }),
+          );
+        } catch {
+          /* ignore */
+        }
         const url = `${window.location.origin}${item.path}${hash}`;
         window.open(url, "_blank", "noopener,noreferrer");
       } else {
-        navigate({ pathname: item.path, hash: hash || undefined });
+        navigate(
+          { pathname: item.path, hash: hash || undefined },
+          { state: { [GUIDE_SEARCH_SCROLL_STATE_KEY]: scrollText } },
+        );
       }
       setOpen(false);
       setQuery("");
