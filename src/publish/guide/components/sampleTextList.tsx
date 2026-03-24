@@ -1,5 +1,5 @@
 import { TextList } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleTextListPage() {
   return (
@@ -118,7 +118,11 @@ function SampleTextListPage() {
             start={1}
             items={[
               "기본 circled(문자열 항목)",
-              { content: "decimal로 override (number 강제)", type: "decimal", number: 4 },
+              {
+                content: "decimal로 override (number 강제)",
+                type: "decimal",
+                number: 4,
+              },
               "문자열 항목은 기본 type 유지",
               { content: "marker 직접 지정(타입 무시)", marker: "◆" },
               { content: "square override", type: "square" },
@@ -193,4 +197,3 @@ function SampleTextListPage() {
 
 export { SampleTextListPage };
 export default SampleTextListPage;
-

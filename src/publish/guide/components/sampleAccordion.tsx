@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleAccordionPage() {
   return (

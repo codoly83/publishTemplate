@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button, Toast, toast } from "@/components/ui";
 import type { ToastProps } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const TOASTER_POSITIONS: NonNullable<ToastProps["position"]>[] = [
   "top-left",
@@ -13,9 +13,8 @@ const TOASTER_POSITIONS: NonNullable<ToastProps["position"]>[] = [
 ];
 
 function SampleToastPage() {
-  const [toasterPosition, setToasterPosition] = React.useState<
-    NonNullable<ToastProps["position"]>
-  >("bottom-right");
+  const [toasterPosition, setToasterPosition] =
+    React.useState<NonNullable<ToastProps["position"]>>("bottom-right");
 
   return (
     <div className="guide-layout">
@@ -80,7 +79,7 @@ toast.error("오류가 발생했습니다.");
 
         <GuideBox
           title="Toaster 기본 position"
-          description='<Toast position={...} /> 로 토스트 컨테이너의 기본 위치를 정합니다. 아래에서 위치를 바꾼 뒤 「이 위치로 표시」를 눌러 확인하세요.'
+          description="<Toast position={...} /> 로 토스트 컨테이너의 기본 위치를 정합니다. 아래에서 위치를 바꾼 뒤 「이 위치로 표시」를 눌러 확인하세요."
           code={`
 const [toasterPosition, setToasterPosition] = useState("bottom-right");
 

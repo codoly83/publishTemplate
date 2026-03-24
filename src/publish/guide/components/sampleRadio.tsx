@@ -1,6 +1,6 @@
 import { Radio, RadioGroup } from "@/components/ui";
 import { useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleRadioPage() {
   const [value, setValue] = useState("reviewing");

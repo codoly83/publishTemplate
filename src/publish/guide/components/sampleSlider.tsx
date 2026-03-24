@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Slider } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleSliderPage() {
   const [controlled, setControlled] = React.useState([40]);
@@ -74,7 +74,7 @@ function SampleSliderPage() {
 
         <GuideBox
           title="세로 방향 (orientation)"
-          description="orientation=&quot;vertical&quot; 과 고정 높이 컨테이너가 필요합니다."
+          description='orientation="vertical" 과 고정 높이 컨테이너가 필요합니다.'
           code={`
 <div className="flex h-48 items-center justify-center gap-8">
   <Slider
@@ -146,11 +146,7 @@ const [controlled, setControlled] = useState([40]);
           `}
         >
           <div className="w-full max-w-md px-2">
-            <Slider
-              defaultValue={[60]}
-              disabled
-              aria-label="비활성 슬라이더"
-            />
+            <Slider defaultValue={[60]} disabled aria-label="비활성 슬라이더" />
           </div>
         </GuideBox>
       </div>

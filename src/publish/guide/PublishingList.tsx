@@ -1,4 +1,4 @@
-import { publishingList } from "@/publish/data/publishing";
+import { publishingList } from "@/publish/guide/publishing";
 import { NavLink } from "react-router-dom";
 
 import {

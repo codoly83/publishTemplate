@@ -9,7 +9,7 @@ import {
   PopoverTitle,
   PopoverTrigger,
 } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SamplePopoverPage() {
   return (

@@ -9,7 +9,7 @@ export interface PublishSampleItem {
 export type GuideNavSectionId =
   | "layout"
   | "pageFeatures"
-  | "functional"
+  | "hooks"
   | "components";
 
 /** 사이드바·메타 공통 항목 (레이아웃 / 훅 / 컴포넌트 한곳에서 관리) */
@@ -30,7 +30,7 @@ export const GUIDE_NAV_SECTIONS: {
 }[] = [
   { id: "layout", label: "layout 컴포넌트" },
   { id: "pageFeatures", label: "페이지 기능 샘플" },
-  { id: "functional", label: "기능성 컴포넌트" },
+  { id: "hooks", label: "hooks" },
   { id: "components", label: "components" },
 ];
 
@@ -217,6 +217,14 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "swiper",
+    title: "Swiper",
+    path: "/guide/swiper",
+    description:
+      "Swiper 기본 슬라이더 구성과 Navigation/Pagination/Scrollbar 모듈 사용법을 확인합니다.",
+    section: "components",
+  },
+  {
     id: "table",
     title: "Table",
     path: "/guide/table",
@@ -258,8 +266,7 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     id: "treeView",
     title: "TreeView",
     path: "/guide/tree-view",
-    description:
-      "커스텀 TreeView 컴포넌트를 확인합니다.",
+    description: "커스텀 TreeView 컴포넌트를 확인합니다.",
     section: "components",
   },
   {
@@ -273,7 +280,7 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
 ];
 
 const guideNavComponentItemsByABC = [...guideNavComponentItems].sort((a, b) =>
-  a.title.localeCompare(b.title, "en", { sensitivity: "base" })
+  a.title.localeCompare(b.title, "en", { sensitivity: "base" }),
 );
 
 /** 가이드 사이드바 전체 (레이아웃·훅·컴포넌트) */
@@ -315,20 +322,58 @@ export const publishGuideNavItems: PublishGuideNavItem[] = [
     section: "pageFeatures",
   },
   {
-    id: "swiper",
-    title: "Swiper",
-    path: "/guide/swiper",
+    id: "hook-useRemainingHeight",
+    title: "useRemainingHeight",
+    path: "/guide/hooks/use-remaining-height",
     description:
-      "Swiper 기본 슬라이더 구성과 Navigation/Pagination/Scrollbar 모듈 사용법을 확인합니다.",
-    section: "pageFeatures",
+      "컨테이너 기준과 뷰포트(100vh) 기준 케이스를 한 페이지에서 비교합니다.",
+    section: "hooks",
   },
   {
-    id: "hooks",
-    title: "Hooks",
-    path: "/guide/hooks",
+    id: "hook-useNearestScrollableMetrics",
+    title: "useNearestScrollableMetrics",
+    path: "/guide/hooks/use-nearest-scrollable-metrics",
     description:
-      "src/hooks의 useRemainingHeight, useHtmlRootClass(<html>), useHtmlTag(head·body), useLayoutClass 등 공용 훅 사용 예시를 한 페이지에서 확인합니다.",
-    section: "functional",
+      "ref 기준으로 가장 가까운 스크롤 컨테이너의 scrollTop·진행률 등을 구독합니다.",
+    section: "hooks",
+  },
+  {
+    id: "hook-useScrollSpy",
+    title: "useScrollSpy",
+    path: "/guide/hooks/use-scroll-spy",
+    description: "스크롤 컨테이너 안에서 현재 보이는 섹션 id를 계산합니다.",
+    section: "hooks",
+  },
+  {
+    id: "hook-useMediaDevice",
+    title: "useMediaDevice",
+    path: "/guide/hooks/use-media-device",
+    description:
+      "뷰포트·브레이크포인트(mobile/tablet/desktop), 터치·포인터 힌트. forceBreakpoint 옵션 포함.",
+    section: "hooks",
+  },
+  {
+    id: "hook-useHtmlRootClass",
+    title: "useHtmlRootClass",
+    path: "/guide/hooks/use-html-root-class",
+    description: "<html> 루트에 클래스를 붙였다가 언마운트 시 제거합니다.",
+    section: "hooks",
+  },
+  {
+    id: "hook-useHtmlTag",
+    title: "useHtmlTag",
+    path: "/guide/hooks/use-html-tag",
+    description:
+      "head·body에 meta·style·script·link 태그를 주입하고 정리합니다.",
+    section: "hooks",
+  },
+  {
+    id: "hook-useLayoutClass",
+    title: "useLayoutClass",
+    path: "/guide/hooks/use-layout-class",
+    description:
+      "PageLayoutBasic 레이아웃 루트에 클래스를 붙였다가 이탈 시 제거합니다.",
+    section: "hooks",
   },
   ...guideNavComponentItemsByABC,
 ];

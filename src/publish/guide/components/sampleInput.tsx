@@ -7,7 +7,7 @@ import {
   InputGroupInput,
   InputGroupText,
 } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleInputPage() {
   return (
@@ -72,7 +72,9 @@ function SampleInputPage() {
               <Input type="password" resetEnabled defaultValue="password123!" />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-sm text-font-g">password + resetEnabled (empty)</div>
+              <div className="text-sm text-font-g">
+                password + resetEnabled (empty)
+              </div>
               <Input
                 type="password"
                 resetEnabled
@@ -435,7 +437,9 @@ function SampleInputPage() {
         >
           <div className="grid max-w-4xl gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <div className="text-sm text-font-g">reset shown when value exists</div>
+              <div className="text-sm text-font-g">
+                reset shown when value exists
+              </div>
               <Input
                 resetEnabled
                 defaultValue="입력해보세요"

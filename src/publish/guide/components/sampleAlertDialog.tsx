@@ -11,7 +11,7 @@ import {
   Button,
 } from "@/components/ui";
 import { useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleAlertDialogPage() {
   const [alertOpen, setAlertOpen] = useState(false);

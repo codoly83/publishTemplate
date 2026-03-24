@@ -1,5 +1,5 @@
 import { Chip, Icon } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const colors = ["blue", "green", "yellow", "red", "purple", "gray"] as const;
 

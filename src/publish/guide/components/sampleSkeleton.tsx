@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, Skeleton } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 /** 로딩/본문 전환 시 카드 높이가 크게 변하지 않도록 행 높이를 맞춤 */
 function SkeletonFourSecondDemo() {

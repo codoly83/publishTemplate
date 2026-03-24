@@ -43,11 +43,7 @@ const { scrollElement, metrics } = useNearestScrollableMetrics(anchorRef);
           style={{ height: 220 }}
         >
           <div className="min-h-0 flex-1 overflow-y-auto p-3 text-sm text-font-g">
-            <div
-              ref={nearestScrollAnchorRef}
-              className="sr-only"
-              aria-hidden
-            />
+            <div ref={nearestScrollAnchorRef} className="sr-only" aria-hidden />
             {Array.from({ length: 28 }, (_, i) => (
               <p key={i} className="mb-2">
                 스크롤 테스트 — useNearestScrollableMetrics 줄 {i + 1}
@@ -87,3 +83,17 @@ const { scrollElement, metrics } = useNearestScrollableMetrics(anchorRef);
     </GuideBox>
   );
 }
+
+function SampleUseNearestScrollableMetrics() {
+  return (
+    <div className="guide-layout">
+      <h1 className="guide-title">useNearestScrollableMetrics</h1>
+      <div className="guide-content">
+        <HooksSampleNearestScrollableMetricsPanel />
+      </div>
+    </div>
+  );
+}
+
+export { SampleUseNearestScrollableMetrics };
+export default SampleUseNearestScrollableMetrics;

@@ -1,6 +1,6 @@
 import { Pagination } from "@/components/ui";
 import { useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SamplePaginationPage() {
   // 1. Basic

@@ -171,7 +171,7 @@ function SelectTrigger({
       <span className={styles.triggerRight} data-slot="select-trigger-right">
         {showResetButton ? (
           <Button
-            type="button"
+            asChild
             variant="ghost"
             size="icon-sm"
             shape="square"
@@ -188,7 +188,9 @@ function SelectTrigger({
               ctx?.reset();
             }}
           >
-            <Icon name="btn-close" size={16} />
+            <span>
+              <Icon name="btn-close" size={16} />
+            </span>
           </Button>
         ) : null}
         <SelectPrimitive.Icon className={styles.triggerIcon}>

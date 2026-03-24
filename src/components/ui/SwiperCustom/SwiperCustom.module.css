@@ -1,0 +1,9 @@
+/* 레이아웃 깨짐 방지(부모 flex/grid 안에서 자주 필요) */
+.swiper {
+  width: 100%;
+  min-width: 0;
+}
+
+.slide {
+  box-sizing: border-box;
+}

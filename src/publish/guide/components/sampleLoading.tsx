@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Button, Loading } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleLoadingPage() {
   const [screenLoading, setScreenLoading] = React.useState(false);
@@ -84,7 +84,9 @@ const [loading, setLoading] = useState(false);
           >
             <div className="rounded-xl border border-line02 bg-base p-4">
               <p className="font-medium text-font-b">주문 목록</p>
-              <p className="mt-2 text-sm text-font-g">총 3건의 데이터가 있습니다.</p>
+              <p className="mt-2 text-sm text-font-g">
+                총 3건의 데이터가 있습니다.
+              </p>
               <ul className="mt-3 list-disc pl-5 text-sm text-font-b">
                 <li>주문번호 #A-1024</li>
                 <li>주문번호 #A-1025</li>

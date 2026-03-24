@@ -1,6 +1,6 @@
 import { Icon } from "@/components/ui/Icon/Icon";
 import { iconNames } from "@/components/ui/Icon/Icon.types";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleIconPage() {
   return (

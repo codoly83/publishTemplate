@@ -1,6 +1,6 @@
 import { Button, Portal, usePortalContainer } from "@/components/ui";
 import { useEffect, useRef, useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SamplePortalPage() {
   const [showDefault, setShowDefault] = useState(false);

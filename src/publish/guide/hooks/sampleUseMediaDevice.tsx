@@ -50,17 +50,16 @@ export function HooksSampleMediaDevicePanel() {
           <p>
             뷰포트 너비로 mobile(768px 미만) / tablet(768~1023px) /
             desktop(1024px 이상)를 구분합니다. window resize·
-            visualViewport·orientationchange 시 갱신됩니다. 터치·포인터·
-            호버는 미디어 특성으로 접근 환경 힌트를 줍니다.
+            visualViewport·orientationchange 시 갱신됩니다. 터치·포인터· 호버는
+            미디어 특성으로 접근 환경 힌트를 줍니다.
           </p>
           <p className="mt-2">
             <code className="text-font-b">forceBreakpoint</code>로 특정
             페이지에서 실제 창 크기와 관계없이 브레이크포인트만 고정할 수
-            있습니다. 고정 시{" "}
-            <code className="text-font-b">width</code>는 해당 구간을
-            나타내는 대표 너비로 바뀌고,{" "}
-            <code className="text-font-b">height</code>는 실제 뷰포트
-            높이를 유지합니다.
+            있습니다. 고정 시 <code className="text-font-b">width</code>는 해당
+            구간을 나타내는 대표 너비로 바뀌고,{" "}
+            <code className="text-font-b">height</code>는 실제 뷰포트 높이를
+            유지합니다.
           </p>
         </>
       }
@@ -72,8 +71,8 @@ export function HooksSampleMediaDevicePanel() {
             브레이크포인트 강제 (페이지별 미리보기 등)
           </p>
           <p className="mb-3 text-xs text-font-g">
-            아래에서 mobile / tablet / desktop을 고르면, 창을 넓혀도 훅은
-            선택한 구간만 반환합니다. 끄면 실제 뷰포트 기준으로 돌아갑니다.
+            아래에서 mobile / tablet / desktop을 고르면, 창을 넓혀도 훅은 선택한
+            구간만 반환합니다. 끄면 실제 뷰포트 기준으로 돌아갑니다.
           </p>
           <div className="flex flex-wrap gap-2">
             {(
@@ -125,8 +124,7 @@ export function HooksSampleMediaDevicePanel() {
           <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs text-font-b">
             <dt className="text-font-g">width × height</dt>
             <dd>
-              {Math.round(mediaDevice.width)} ×{" "}
-              {Math.round(mediaDevice.height)}
+              {Math.round(mediaDevice.width)} × {Math.round(mediaDevice.height)}
             </dd>
             <dt className="text-font-g">breakpoint</dt>
             <dd>{mediaDevice.breakpoint}</dd>
@@ -147,3 +145,17 @@ export function HooksSampleMediaDevicePanel() {
     </GuideBox>
   );
 }
+
+function SampleMediaDevice() {
+  return (
+    <div className="guide-layout">
+      <h1 className="guide-title">useMediaDevice</h1>
+      <div className="guide-content">
+        <HooksSampleMediaDevicePanel />
+      </div>
+    </div>
+  );
+}
+
+export { SampleMediaDevice };
+export default SampleMediaDevice;

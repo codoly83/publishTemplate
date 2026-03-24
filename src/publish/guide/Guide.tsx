@@ -4,22 +4,27 @@ import { useTheme } from "@/providers/theme-provider";
 import { NavLink, Outlet } from "react-router-dom";
 
 import { ExternalLink } from "lucide-react";
-import {
-  GUIDE_NAV_SECTIONS,
-  publishGuideNavItems,
-} from "./data/sampleMeta";
+import { GUIDE_NAV_SECTIONS, publishGuideNavItems } from "./sampleMeta";
+import { GuideSearch } from "./GuideSearch";
 import "./guide.css";
 
 function Guide() {
   const { setTheme } = useTheme();
   return (
     <div className="flex h-screen flex-col">
-      <header className="flex items-center justify-between border-b border-gr01 bg-base px-4 py-3">
-        <NavLink to="/publish" className="text-primary font-bold">
+      <header className="flex items-center justify-between gap-4 border-b border-gr01 bg-base px-4 py-3">
+        <NavLink
+          to="/publish"
+          className="text-primary font-bold shrink-0"
+        >
           Publish Guide
         </NavLink>
 
-        <div className="flex items-center gap-2">
+        <div className="min-w-0 flex-1 flex justify-center px-2">
+          <GuideSearch items={publishGuideNavItems} />
+        </div>
+
+        <div className="flex shrink-0 items-center gap-2">
           <span className="text-font-b text-sm">다크모드 설정</span>
           <Switch
             aria-label="다크모드 설정"
@@ -28,7 +33,7 @@ function Guide() {
         </div>
       </header>
       <main className="flex-1 flex gap-4 p-4 bg-line01 overflow-hidden">
-        <aside className="flex flex-col bg-base rounded-2xl w-50">
+        <aside className="flex flex-col bg-base rounded-2xl w-60">
           <div className="guide-title">
             총 {publishGuideNavItems.length}개의 샘플 페이지
           </div>

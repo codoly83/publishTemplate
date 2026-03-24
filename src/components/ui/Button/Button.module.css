@@ -129,7 +129,37 @@
     }
   }
 
+  /* 아이콘 전용 (ghost 등 variantGhost와 함께 사용) */
+  &.sizeIcon {
+    min-width: auto;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 8px;
+  }
+  &.sizeIconMd {
+    min-width: auto;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+  }
+  &.sizeIconSm {
+    min-width: auto;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 6px;
+  }
+
+  &.colorDefault {
+    /* cva 기본 color */
+  }
+
   /* shape */
+  &.shapeDefault {
+    /* cva 기본 shape */
+  }
   &.shapeSquare {
     border-radius: 8px !important;
   }

@@ -1,4 +1,4 @@
-// src/data/publishing.ts
+// src/publish/guide/data/publishing.ts
 
 export const publishingList = [
   {

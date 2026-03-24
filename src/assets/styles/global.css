@@ -2,12 +2,6 @@
 /* 자동 스캔이 일부 파일을 놓칠 때 유틸(h-4, w-2/3 등)이 생성되지 않는 경우 방지 */
 @source "../../**/*.{tsx,ts,jsx,js}";
 
-/* Swiper 기본 CSS는 전역으로 한 번만 로드 */
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-@import "swiper/css/scrollbar";
-
 @import "./_font.css";
 @import "./_color.css";
 @import "./_base.css";

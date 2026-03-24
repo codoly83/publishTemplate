@@ -5,7 +5,7 @@ import {
   type DateRange,
 } from "@/components/ui";
 import * as React from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleDatePickerPage() {
   const [selectedDate, setSelectedDate] = React.useState<Date>();
@@ -121,10 +121,7 @@ function SampleDatePickerPage() {
           <div className="grid max-w-3xl gap-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
               <div className="text-sm text-font-g">default (value exists)</div>
-              <DatePicker
-                resetEnabled
-                defaultValue={new Date(2026, 2, 7)}
-              />
+              <DatePicker resetEnabled defaultValue={new Date(2026, 2, 7)} />
             </div>
 
             <div className="flex flex-col gap-2">
@@ -143,7 +140,11 @@ function SampleDatePickerPage() {
 
             <div className="flex flex-col gap-2">
               <div className="text-sm text-font-g">btnType (empty)</div>
-              <DatePicker variant="btnType" resetEnabled placeholder="YYYY.MM.DD" />
+              <DatePicker
+                variant="btnType"
+                resetEnabled
+                placeholder="YYYY.MM.DD"
+              />
             </div>
           </div>
         </GuideBox>

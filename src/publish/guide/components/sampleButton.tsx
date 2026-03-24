@@ -1,5 +1,5 @@
 import { Button, Icon } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleButtonPage() {
   return (

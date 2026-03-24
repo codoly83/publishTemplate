@@ -5,46 +5,52 @@ import { Navigate } from "react-router-dom";
 // Publish Sample Pages
 import { DefaultLayout } from "@/components/layout/DefaultLayout";
 import { PageLayoutBasic } from "@/components/layout/pageLayoutBasic/";
-import Guide from "@/publish/Guide";
-import PublishingList from "@/publish/PublishingList";
-import SampleAccordionPage from "@/publish/sample/sampleAccordion";
-import SampleCollapsiblePage from "@/publish/sample/sampleCollapsible";
-import SampleCheckboxPage from "@/publish/sample/sampleCheckbox";
-import SampleChipPage from "@/publish/sample/sampleChip";
-import SampleDatePickerPage from "@/publish/sample/sampleDatePicker";
-import SampleModalPage from "@/publish/sample/sampleModal";
-import SampleIconPage from "@/publish/sample/SampleIcon";
-import SampleInputPage from "@/publish/sample/sampleInput";
-import SampleInputStepperPage from "@/publish/sample/sampleInputStepper";
-import SampleLoadingPage from "@/publish/sample/sampleLoading";
-import SampleTextareaPage from "@/publish/sample/sampleTextarea";
-import SampleLayout from "@/publish/sample/sampleLayout";
-import SampleLayoutBasicPage from "@/publish/sample/sampleLayoutBasic";
-import SamplePageChangePanelPage from "@/publish/sample/samplePageChangePanel";
-import SamplePaginationPage from "@/publish/sample/samplePagination";
-import SampleRadioPage from "@/publish/sample/sampleRadio";
-import SampleScrollAreaPage from "@/publish/sample/sampleScrollArea";
-import SampleSelectPage from "@/publish/sample/sampleSelect";
-import SampleSwitchPage from "@/publish/sample/sampleToggle";
-import SampleButtonPage from "../publish/sample/sampleButton";
-import SampleTablePage from "../publish/sample/sampleTable";
-import SampleTabsPage from "../publish/sample/sampleTabs";
-import SampleAlertDialogPage from "@/publish/sample/sampleAlertDialog";
-import SamplePortalPage from "@/publish/sample/samplePortal";
-import SampleFontPage from "@/publish/sample/SampleFont";
-import SampleHooksPage from "@/publish/sample/sampleHooks";
-import SampleTooltipPage from "@/publish/sample/sampleTooltip";
-import SampleSliderPage from "@/publish/sample/sampleSlider";
-import SampleToastPage from "@/publish/sample/sampleToast";
-import SamplePopoverPage from "@/publish/sample/samplePopover";
-import SampleSkeletonPage from "@/publish/sample/sampleSkeleton";
-import SampleSortableListPage from "@/publish/sample/sampleSortableList";
-import SamplePageScrollSpy from "@/publish/sample/samplePageScrollSpy";
-import SampleScrollTopButtonPage from "@/publish/sample/sampleScrollTopButton";
-import SampleSwiperPage from "@/publish/sample/sampleSwiper";
-import SampleTextListPage from "@/publish/sample/sampleTextList";
-import SampleTreeViewPage from "@/publish/sample/sampleTreeView";
-import { publishGuideNavItems } from "@/publish/data/sampleMeta";
+import Guide from "@/publish/guide/Guide";
+import PublishingList from "@/publish/guide/PublishingList";
+import SampleAccordionPage from "@/publish/guide/components/sampleAccordion";
+import SampleCollapsiblePage from "@/publish/guide/components/sampleCollapsible";
+import SampleCheckboxPage from "@/publish/guide/components/sampleCheckbox";
+import SampleChipPage from "@/publish/guide/components/sampleChip";
+import SampleDatePickerPage from "@/publish/guide/components/sampleDatePicker";
+import SampleModalPage from "@/publish/guide/components/sampleModal";
+import SampleIconPage from "@/publish/guide/components/SampleIcon";
+import SampleInputPage from "@/publish/guide/components/sampleInput";
+import SampleInputStepperPage from "@/publish/guide/components/sampleInputStepper";
+import SampleLoadingPage from "@/publish/guide/components/sampleLoading";
+import SampleTextareaPage from "@/publish/guide/components/sampleTextarea";
+import SampleLayout from "@/publish/guide/layout/sampleLayout";
+import SampleLayoutBasicPage from "@/publish/guide/layout/sampleLayoutBasic";
+import SamplePageChangePanelPage from "@/publish/guide/components/samplePageChangePanel";
+import SamplePaginationPage from "@/publish/guide/components/samplePagination";
+import SampleRadioPage from "@/publish/guide/components/sampleRadio";
+import SampleScrollAreaPage from "@/publish/guide/components/sampleScrollArea";
+import SampleSelectPage from "@/publish/guide/components/sampleSelect";
+import SampleSwitchPage from "@/publish/guide/components/sampleToggle";
+import SampleButtonPage from "@/publish/guide/components/sampleButton";
+import SampleTablePage from "@/publish/guide/components/sampleTable";
+import SampleTabsPage from "@/publish/guide/components/sampleTabs";
+import SampleAlertDialogPage from "@/publish/guide/components/sampleAlertDialog";
+import SamplePortalPage from "@/publish/guide/components/samplePortal";
+import SampleFontPage from "@/publish/guide/components/SampleFont";
+import SampleUseHtmlRootClass from "@/publish/guide/hooks/sampleUseHtmlRootClass";
+import SampleUseHtmlTag from "@/publish/guide/hooks/sampleUseHtmlTag";
+import SampleUseLayoutClass from "@/publish/guide/hooks/sampleUseLayoutClass";
+import SampleUseMediaDevice from "@/publish/guide/hooks/sampleUseMediaDevice";
+import SampleUseNearestScrollableMetrics from "@/publish/guide/hooks/sampleUseNearestScrollableMetrics";
+import SampleUseRemainingHeight from "@/publish/guide/hooks/sampleUseRemainingHeight";
+import SampleUseScrollSpy from "@/publish/guide/hooks/sampleUseScrollSpy";
+import SampleTooltipPage from "@/publish/guide/components/sampleTooltip";
+import SampleSliderPage from "@/publish/guide/components/sampleSlider";
+import SampleToastPage from "@/publish/guide/components/sampleToast";
+import SamplePopoverPage from "@/publish/guide/components/samplePopover";
+import SampleSkeletonPage from "@/publish/guide/components/sampleSkeleton";
+import SampleSortableListPage from "@/publish/guide/components/sampleSortableList";
+import SamplePageScrollSpy from "@/publish/guide/pageFeatures/samplePageScrollSpy";
+import SampleScrollTopButtonPage from "@/publish/guide/pageFeatures/sampleScrollTopButton";
+import SampleSwiperPage from "@/publish/guide/components/sampleSwiper";
+import SampleTextListPage from "@/publish/guide/components/sampleTextList";
+import SampleTreeViewPage from "@/publish/guide/components/sampleTreeView";
+import { publishGuideNavItems } from "@/publish/guide/sampleMeta";
 import { RouteTitleSync } from "./RouteTitleSync";
 
 const titleByPath = publishGuideNavItems.reduce<Record<string, string>>(
@@ -204,8 +210,46 @@ export const routes = [
       },
       {
         path: "hooks",
-        element: <SampleHooksPage />,
-        handle: { title: getGuideChildTitle("hooks") },
+        element: <Navigate to="/guide/hooks/use-remaining-height" replace />,
+      },
+      {
+        path: "hooks/use-remaining-height",
+        element: <SampleUseRemainingHeight />,
+        handle: {
+          title: getGuideChildTitle("hooks/use-remaining-height"),
+        },
+      },
+      {
+        path: "hooks/use-nearest-scrollable-metrics",
+        element: <SampleUseNearestScrollableMetrics />,
+        handle: {
+          title: getGuideChildTitle("hooks/use-nearest-scrollable-metrics"),
+        },
+      },
+      {
+        path: "hooks/use-scroll-spy",
+        element: <SampleUseScrollSpy />,
+        handle: { title: getGuideChildTitle("hooks/use-scroll-spy") },
+      },
+      {
+        path: "hooks/use-media-device",
+        element: <SampleUseMediaDevice />,
+        handle: { title: getGuideChildTitle("hooks/use-media-device") },
+      },
+      {
+        path: "hooks/use-html-root-class",
+        element: <SampleUseHtmlRootClass />,
+        handle: { title: getGuideChildTitle("hooks/use-html-root-class") },
+      },
+      {
+        path: "hooks/use-html-tag",
+        element: <SampleUseHtmlTag />,
+        handle: { title: getGuideChildTitle("hooks/use-html-tag") },
+      },
+      {
+        path: "hooks/use-layout-class",
+        element: <SampleUseLayoutClass />,
+        handle: { title: getGuideChildTitle("hooks/use-layout-class") },
       },
       {
         path: "tooltip",

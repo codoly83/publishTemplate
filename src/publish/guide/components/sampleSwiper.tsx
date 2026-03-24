@@ -1,12 +1,15 @@
-import { GuideBox } from "./GuideBox";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { GuideBox } from "@/publish/guide/GuideBox";
 import {
   Autoplay,
   Keyboard,
   Navigation,
-  Pagination,
   Scrollbar,
-} from "swiper/modules";
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  type SwiperInstance,
+} from "@/components/ui";
+import { Play, Square } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const slides = [
@@ -62,26 +65,45 @@ const variableHeightSlides = [
 ];
 
 const peekSlides = [
-  { id: "pk1", title: "Peek Slide 1", desc: "인접 슬라이드가 살짝 노출됩니다." },
-  { id: "pk2", title: "Peek Slide 2", desc: "`slidesPerView`를 소수로 두고 centeredSlides를 켭니다." },
-  { id: "pk3", title: "Peek Slide 3", desc: "이전/다음 버튼 클릭 또는 드래그로 확인하세요." },
-  { id: "pk4", title: "Peek Slide 4", desc: "공간(spaceBetween)도 함께 조절합니다." },
-  { id: "pk5", title: "Peek Slide 5", desc: "loop 모드에서도 동일하게 동작합니다." },
+  {
+    id: "pk1",
+    title: "Peek Slide 1",
+    desc: "인접 슬라이드가 살짝 노출됩니다.",
+  },
+  {
+    id: "pk2",
+    title: "Peek Slide 2",
+    desc: "`slidesPerView`를 소수로 두고 centeredSlides를 켭니다.",
+  },
+  {
+    id: "pk3",
+    title: "Peek Slide 3",
+    desc: "이전/다음 버튼 클릭 또는 드래그로 확인하세요.",
+  },
+  {
+    id: "pk4",
+    title: "Peek Slide 4",
+    desc: "공간(spaceBetween)도 함께 조절합니다.",
+  },
+  {
+    id: "pk5",
+    title: "Peek Slide 5",
+    desc: "loop 모드에서도 동일하게 동작합니다.",
+  },
 ];
 
 function SampleSwiperPage() {
   const [controlledIndex, setControlledIndex] = useState(0);
-  const [controlledSwiper, setControlledSwiper] = useState<{
-    slidePrev: () => void;
-    slideNext: () => void;
-    slideTo: (index: number) => void;
-  } | null>(null);
+  const [controlledSwiper, setControlledSwiper] =
+    useState<SwiperInstance | null>(null);
   const externalPrevRef = useRef<HTMLButtonElement | null>(null);
   const externalNextRef = useRef<HTMLButtonElement | null>(null);
   const externalPaginationRef = useRef<HTMLDivElement | null>(null);
-  const [externalControlsSwiper, setExternalControlsSwiper] = useState<
-    any | null
-  >(null);
+  const [externalControlsSwiper, setExternalControlsSwiper] =
+    useState<SwiperInstance | null>(null);
+  const [autoplayExternalSwiper, setAutoplayExternalSwiper] =
+    useState<SwiperInstance | null>(null);
+  const [autoplayExternalRunning, setAutoplayExternalRunning] = useState(true);
 
   useEffect(() => {
     const swiper = externalControlsSwiper;
@@ -127,15 +149,16 @@ function SampleSwiperPage() {
           title="기본형 (Navigation / Pagination / Scrollbar)"
           description="가장 자주 쓰는 기본 조합입니다. 버튼 이동, 페이지네이션 클릭, 드래그 스크롤이 동시에 동작합니다."
           code={`
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import {
+  Navigation,
+  Scrollbar,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
 
 <Swiper
-  modules={[Navigation, Pagination, Scrollbar]}
+  modules={[Navigation, SwiperPagination, Scrollbar]}
   navigation
   pagination={{ clickable: true }}
   scrollbar={{ draggable: true }}
@@ -150,7 +173,7 @@ import "swiper/css/scrollbar";
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Navigation, Pagination, Scrollbar]}
+              modules={[Navigation, SwiperPagination, Scrollbar]}
               navigation
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
@@ -174,6 +197,187 @@ import "swiper/css/scrollbar";
         </GuideBox>
 
         <GuideBox
+          title="자동 재생 (Autoplay)"
+          description={
+            <>
+              `Autoplay` 모듈과 `autoplay` 옵션으로 일정 간격 자동 전환을
+              켭니다. `disableOnInteraction: false`면 사용자가 슬라이드를 만진
+              뒤에도 자동 재생이 이어지고, `pauseOnMouseEnter`로 호버 시 잠시
+              멈출 수 있습니다.
+            </>
+          }
+          code={`
+import {
+  Autoplay,
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
+
+<Swiper
+  modules={[Autoplay, Navigation, SwiperPagination]}
+  loop
+  autoplay={{
+    delay: 2800,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+  }}
+  navigation
+  pagination={{ clickable: true }}
+  spaceBetween={16}
+  slidesPerView={1}
+>
+  {slides.map((slide) => (
+    <SwiperSlide key={slide.id}>...</SwiperSlide>
+  ))}
+</Swiper>
+          `}
+        >
+          <div className="w-full min-w-0 overflow-hidden">
+            <Swiper
+              modules={[Autoplay, Navigation, SwiperPagination]}
+              loop
+              autoplay={{
+                delay: 2800,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              navigation
+              pagination={{ clickable: true }}
+              spaceBetween={16}
+              slidesPerView={1}
+              className="w-full min-w-0 rounded-lg border border-line02 bg-base p-2"
+            >
+              {slides.map((slide) => (
+                <SwiperSlide key={`${slide.id}-autoplay`}>
+                  <div className="bg-container flex h-48 flex-col items-center justify-center rounded-md border border-line02 p-6 text-center">
+                    <p className="text-font-g mb-1 text-xs font-medium uppercase tracking-wide">
+                      Autoplay
+                    </p>
+                    <h2 className="text-font-b mb-2 text-xl font-bold">
+                      {slide.title}
+                    </h2>
+                    <p className="text-font-g text-sm">{slide.desc}</p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </GuideBox>
+
+        <GuideBox
+          title="외부 버튼으로 Autoplay 토글 (재생 / 정지 아이콘)"
+          description={
+            <>
+              한 버튼으로 토글합니다. 재생 중에는 정지(Square), 정지 중에는
+              재생(Play) 아이콘이 보이며, `autoplay.stop()` /
+              `autoplay.start()`와 `onAutoplayStart`·`onAutoplayStop`으로 상태를
+              맞춥니다.
+            </>
+          }
+          code={`
+import { useState } from "react";
+import { Play, Square } from "lucide-react";
+import {
+  Autoplay,
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  type SwiperInstance,
+} from "@/components/ui";
+
+const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+const [autoplayRunning, setAutoplayRunning] = useState(true);
+
+<button
+  type="button"
+  aria-label={autoplayRunning ? "자동재생 정지" : "자동재생 시작"}
+  onClick={() => {
+    if (!swiper?.autoplay) return;
+    if (autoplayRunning) swiper.autoplay.stop();
+    else swiper.autoplay.start();
+  }}
+>
+  {autoplayRunning ? <Square /> : <Play />}
+</button>
+
+<Swiper
+  modules={[Autoplay, Navigation, SwiperPagination]}
+  loop
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  navigation
+  pagination={{ clickable: true }}
+  onSwiper={setSwiper}
+  onAutoplayStart={() => setAutoplayRunning(true)}
+  onAutoplayStop={() => setAutoplayRunning(false)}
+>
+  ...
+</Swiper>
+          `}
+        >
+          <div className="mb-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              className="text-font-b inline-flex h-10 w-10 items-center justify-center rounded-md border border-line02 bg-container hover:bg-base"
+              aria-label={
+                autoplayExternalRunning ? "자동재생 정지" : "자동재생 시작"
+              }
+              onClick={() => {
+                const ap = autoplayExternalSwiper?.autoplay;
+                if (!ap) return;
+                if (autoplayExternalRunning) ap.stop();
+                else ap.start();
+              }}
+            >
+              {autoplayExternalRunning ? (
+                <Square className="h-5 w-5" aria-hidden />
+              ) : (
+                <Play className="h-5 w-5" aria-hidden />
+              )}
+            </button>
+            <span className="text-font-g text-sm">
+              {autoplayExternalRunning
+                ? "재생 중 — 정지하려면 버튼"
+                : "정지됨 — 재생하려면 버튼"}
+            </span>
+          </div>
+          <div className="w-full min-w-0 overflow-hidden">
+            <Swiper
+              modules={[Autoplay, Navigation, SwiperPagination]}
+              loop
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              navigation
+              pagination={{ clickable: true }}
+              spaceBetween={16}
+              slidesPerView={1}
+              onSwiper={(instance) => {
+                setAutoplayExternalSwiper(instance);
+                setAutoplayExternalRunning(instance.autoplay?.running ?? false);
+              }}
+              onAutoplayStart={() => setAutoplayExternalRunning(true)}
+              onAutoplayStop={() => setAutoplayExternalRunning(false)}
+              className="w-full min-w-0 rounded-lg border border-line02 bg-base p-2"
+            >
+              {slides.map((slide) => (
+                <SwiperSlide key={`${slide.id}-autoplay-toggle`}>
+                  <div className="bg-container flex h-44 flex-col items-center justify-center rounded-md border border-line02 p-6 text-center">
+                    <p className="text-font-g mb-1 text-xs font-medium uppercase tracking-wide">
+                      Autoplay 외부 제어
+                    </p>
+                    <h2 className="text-font-b mb-2 text-xl font-bold">
+                      {slide.title}
+                    </h2>
+                    <p className="text-font-g text-sm">{slide.desc}</p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </GuideBox>
+
+        <GuideBox
           title="반응형 + 자동 재생 + 키보드 이동"
           description={
             <>
@@ -182,8 +386,16 @@ import "swiper/css/scrollbar";
             </>
           }
           code={`
+import {
+  Autoplay,
+  Keyboard,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
+
 <Swiper
-  modules={[Autoplay, Pagination, Keyboard]}
+  modules={[Autoplay, SwiperPagination, Keyboard]}
   autoplay={{ delay: 2200, disableOnInteraction: false }}
   pagination={{ clickable: true }}
   keyboard={{ enabled: true }}
@@ -201,7 +413,7 @@ import "swiper/css/scrollbar";
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Autoplay, Pagination, Keyboard]}
+              modules={[Autoplay, SwiperPagination, Keyboard]}
               autoplay={{ delay: 2200, disableOnInteraction: false }}
               pagination={{ clickable: true }}
               keyboard={{ enabled: true }}
@@ -237,15 +449,26 @@ import "swiper/css/scrollbar";
           title="외부 컨트롤 + 현재 인덱스 표시 (제어형)"
           description="Swiper 인스턴스를 받아 외부 버튼으로 이동을 제어하고, 현재 활성 슬라이드 인덱스를 별도로 표시합니다."
           code={`
+import { useState } from "react";
+import {
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  type SwiperInstance,
+} from "@/components/ui";
+
 const [controlledIndex, setControlledIndex] = useState(0);
-const [controlledSwiper, setControlledSwiper] = useState(null);
+const [controlledSwiper, setControlledSwiper] =
+  useState<SwiperInstance | null>(null);
 
 <button onClick={() => controlledSwiper?.slidePrev()}>이전</button>
 <button onClick={() => controlledSwiper?.slideNext()}>다음</button>
 <button onClick={() => controlledSwiper?.slideTo(0)}>첫 슬라이드</button>
 
 <Swiper
-  onSwiper={(swiper) => setControlledSwiper(swiper)}
+  modules={[SwiperPagination]}
+  pagination={{ clickable: true }}
+  onSwiper={setControlledSwiper}
   onSlideChange={(swiper) => setControlledIndex(swiper.realIndex)}
 >
   ...
@@ -281,14 +504,8 @@ const [controlledSwiper, setControlledSwiper] = useState(null);
 
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Pagination]}
-              onSwiper={(swiper) => {
-                setControlledSwiper({
-                  slidePrev: () => swiper.slidePrev(),
-                  slideNext: () => swiper.slideNext(),
-                  slideTo: (index: number) => swiper.slideTo(index),
-                });
-              }}
+              modules={[SwiperPagination]}
+              onSwiper={setControlledSwiper}
               onSlideChange={(swiper) => setControlledIndex(swiper.realIndex)}
               pagination={{ clickable: true }}
               spaceBetween={16}
@@ -316,15 +533,26 @@ const [controlledSwiper, setControlledSwiper] = useState(null);
           title="이전/다음 + Pagination 별도 영역 배치"
           description="네비게이션 버튼과 Pagination을 슬라이더 하단의 별도 컨트롤 바에 배치하는 패턴입니다."
           code={`
+import { useRef, useState } from "react";
+import {
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+  type SwiperInstance,
+} from "@/components/ui";
+
 const prevRef = useRef<HTMLButtonElement | null>(null);
 const nextRef = useRef<HTMLButtonElement | null>(null);
 const paginationRef = useRef<HTMLDivElement | null>(null);
+const [externalSwiper, setExternalSwiper] =
+  useState<SwiperInstance | null>(null);
 
 <Swiper
-  modules={[Navigation, Pagination]}
+  modules={[Navigation, SwiperPagination]}
   navigation
   pagination={{ clickable: true }}
-                onSwiper={(swiper) => setExternalControlsSwiper(swiper)}
+  onSwiper={setExternalSwiper}
   onBeforeInit={(swiper) => {
     const navigation = swiper.params.navigation;
     const pagination = swiper.params.pagination;
@@ -356,7 +584,7 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation, SwiperPagination]}
               onSwiper={(swiper) => setExternalControlsSwiper(swiper)}
               onBeforeInit={(swiper) => {
                 const navigation = swiper.params.navigation;
@@ -438,8 +666,15 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
           title="슬라이드별 높이 상이 + 자동 높이 조절"
           description="슬라이드마다 콘텐츠 높이가 달라도 `autoHeight`를 켜면 활성 슬라이드 높이에 맞춰 컨테이너가 자연스럽게 조절됩니다."
           code={`
+import {
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
+
 <Swiper
-  modules={[Navigation, Pagination]}
+  modules={[Navigation, SwiperPagination]}
   navigation
   pagination={{ clickable: true }}
   autoHeight
@@ -454,7 +689,7 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation, SwiperPagination]}
               navigation
               pagination={{ clickable: true }}
               autoHeight
@@ -470,7 +705,10 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
                     </h3>
                     <div className="space-y-2">
                       {slide.lines.map((line, index) => (
-                        <p key={`${slide.id}-${index}`} className="text-font-g text-sm">
+                        <p
+                          key={`${slide.id}-${index}`}
+                          className="text-font-g text-sm"
+                        >
                           {line}
                         </p>
                       ))}
@@ -486,8 +724,15 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
           title="인접 슬라이드 미묘 노출(피크/Peek)"
           description="이전/다음 슬라이드가 살짝 보이는 느낌의 UX를 만들기 위해 `slidesPerView`를 소수로 두고 `centeredSlides`를 사용합니다."
           code={`
+import {
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
+
 <Swiper
-  modules={[Navigation, Pagination]}
+  modules={[Navigation, SwiperPagination]}
   navigation
   pagination={{ clickable: true }}
   loop
@@ -502,7 +747,7 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation, SwiperPagination]}
               navigation
               pagination={{ clickable: true }}
               loop
@@ -530,8 +775,15 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
           title="우측만 미묘 노출(Peek Only Right)"
           description="`centeredSlides`를 끄고 `slidesPerView`를 소수로 두면, 현재 슬라이드를 좌측 기준으로 배치해서 우측 다음 슬라이드만 살짝 보이게 만들 수 있습니다."
           code={`
+import {
+  Navigation,
+  Swiper,
+  SwiperPagination,
+  SwiperSlide,
+} from "@/components/ui";
+
 <Swiper
-  modules={[Navigation, Pagination]}
+  modules={[Navigation, SwiperPagination]}
   navigation
   pagination={{ clickable: true }}
   loop
@@ -545,7 +797,7 @@ const paginationRef = useRef<HTMLDivElement | null>(null);
         >
           <div className="w-full min-w-0 overflow-hidden">
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation, SwiperPagination]}
               navigation
               pagination={{ clickable: true }}
               loop

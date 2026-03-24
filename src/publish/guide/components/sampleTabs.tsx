@@ -8,7 +8,7 @@ import {
   useTabActive,
 } from "@/components/ui";
 import { useRef } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 /** scrollSpy 샘플용 섹션 id (TabsTrigger value / TabsScrollSpyPanel panelId와 동일) */
 const SCROLL_SPY_DEMO_IDS = [

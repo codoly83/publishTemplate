@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui";
+import { useLayoutClass } from "@/hooks/useLayoutClass";
 import { Link } from "react-router-dom";
 import { GuideBox } from "@/publish/guide/GuideBox";
 
@@ -32,3 +33,19 @@ function SomeOutletPage() {
     </GuideBox>
   );
 }
+
+function SampleUseLayoutClass() {
+  useLayoutClass("sample-hooks-layout-class-noop");
+
+  return (
+    <div className="guide-layout">
+      <h1 className="guide-title">useLayoutClass</h1>
+      <div className="guide-content">
+        <HooksSampleLayoutClassPanel />
+      </div>
+    </div>
+  );
+}
+
+export { SampleUseLayoutClass };
+export default SampleUseLayoutClass;

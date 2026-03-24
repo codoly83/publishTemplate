@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.14.1",
     "@minoru/react-dnd-treeview": "^3.5.3",
     "@mui/material": "^7.3.9",
+    "@radix-ui/react-slot": "^1.2.4",
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@react-pdf-viewer/highlight": "^3.12.0",

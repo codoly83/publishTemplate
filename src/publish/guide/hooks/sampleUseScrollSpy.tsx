@@ -66,7 +66,8 @@ function UseScrollSpyDemo() {
       </div>
 
       <p className="mt-3 text-xs text-font-g">
-        현재 활성 id: <code className="text-font-b">{activeId || "(none)"}</code>
+        현재 활성 id:{" "}
+        <code className="text-font-b">{activeId || "(none)"}</code>
       </p>
     </div>
   );
@@ -95,3 +96,17 @@ const move = (id: string) => {
     </GuideBox>
   );
 }
+
+function SampleUseScrollSpy() {
+  return (
+    <div className="guide-layout">
+      <h1 className="guide-title">useScrollSpy</h1>
+      <div className="guide-content">
+        <HooksSampleScrollSpyPanel />
+      </div>
+    </div>
+  );
+}
+
+export { SampleUseScrollSpy };
+export default SampleUseScrollSpy;

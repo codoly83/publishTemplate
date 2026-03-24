@@ -1,5 +1,5 @@
 import { ScrollArea, ScrollBar } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const loremItems = [
   "사용자 인증 및 권한 관리 시스템",
@@ -153,7 +153,7 @@ function SampleScrollAreaPage() {
                     >
                       {col}
                     </div>
-                  )
+                  ),
                 )}
               </div>
               {Array.from({ length: 15 }, (_, i) => (
@@ -186,8 +186,8 @@ function SampleScrollAreaPage() {
                         i % 3 === 0
                           ? "bg-green-100 text-green-700"
                           : i % 3 === 1
-                          ? "bg-yellow-100 text-yellow-700"
-                          : "bg-slate-100 text-font-g"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-slate-100 text-font-g"
                       }`}
                     >
                       {i % 3 === 0 ? "활성" : i % 3 === 1 ? "대기" : "비활성"}

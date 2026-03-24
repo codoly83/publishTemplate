@@ -7,7 +7,7 @@ import {
   TabsTrigger,
 } from "@/components/ui";
 import { scrollElementIntoViewInContainer } from "@/hooks/useScrollSpy";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const SECTIONS = [
   {

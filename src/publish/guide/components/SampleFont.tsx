@@ -1,4 +1,4 @@
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleFontPage() {
   const SIZES = [24, 20, 16, 14, 12];

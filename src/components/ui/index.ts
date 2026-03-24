@@ -24,7 +24,11 @@ export {
 } from "./Card/Card";
 export { Checkbox, CheckboxGroup } from "./Checkbox/Checkbox";
 export { Chip } from "./Chip/Chip";
-export { DatePicker, DateRangePicker, DateRangePickerTwoPickers } from "./DatePicker/DatePicker";
+export {
+  DatePicker,
+  DateRangePicker,
+  DateRangePickerTwoPickers,
+} from "./DatePicker/DatePicker";
 export type { DateRange } from "./DatePicker/DatePicker";
 export { Loading, LoadingIndicator } from "./Loading/Loading";
 export type { LoadingIndicatorProps, LoadingProps } from "./Loading/Loading";
@@ -111,7 +115,10 @@ export {
   TabsTrigger,
   useTabActive,
 } from "./Tabs/Tabs";
-export type { TabsScrollSpyConfig, TabsScrollSpyPanelProps } from "./Tabs/Tabs.types";
+export type {
+  TabsScrollSpyConfig,
+  TabsScrollSpyPanelProps,
+} from "./Tabs/Tabs.types";
 export { Textarea } from "./TextArea/Textarea";
 export { Switch } from "./Switch/Switch";
 export { Slider, sliderRootVariants } from "./Slider/Slider";
@@ -166,7 +173,10 @@ export {
   tooltipProviderVariants,
   tooltipContentVariants,
 } from "./Tooltip/Tooltip";
-export type { TooltipVariantProps, TooltipContentProps } from "./Tooltip/Tooltip";
+export type {
+  TooltipVariantProps,
+  TooltipContentProps,
+} from "./Tooltip/Tooltip";
 export {
   Popover,
   PopoverTrigger,
@@ -190,4 +200,25 @@ export { Toast, toast, toastRootVariants } from "./Toast/Toast";
 export type { ToastProps } from "./Toast/Toast";
 
 export { TreeView } from "./TreeView/TreeView";
-export type { TreeViewNode, TreeViewNodeId, TreeViewProps } from "./TreeView/TreeView";
+export type {
+  TreeViewNode,
+  TreeViewNodeId,
+  TreeViewProps,
+} from "./TreeView/TreeView";
+export {
+  Swiper,
+  SwiperSlide,
+  Autoplay,
+  Keyboard,
+  Navigation,
+  SwiperPagination,
+  Scrollbar,
+  useSwiper,
+  useSwiperSlide,
+} from "./SwiperCustom/SwiperCustom";
+export type {
+  SwiperInstance,
+  SwiperProps,
+  SwiperRef,
+  SwiperSlideProps,
+} from "./SwiperCustom/SwiperCustom";

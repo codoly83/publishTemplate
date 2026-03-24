@@ -1,6 +1,6 @@
 import { PageChangePanel } from "@/components/ui";
 import { useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const LAYOUT_OPTIONS = [
   { value: "default", label: "기본 레이아웃" },

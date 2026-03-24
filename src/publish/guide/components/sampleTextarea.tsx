@@ -9,7 +9,7 @@ import {
   Textarea,
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const SUGGESTED_MAX = 500;
 
@@ -89,7 +89,8 @@ const len = value.length;
             />
             <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
               <span id="textarea-hint" className="text-font-g">
-                제목·본문 요약 등은 최대 {SUGGESTED_MAX}자를 넘기지 않도록 해 주세요.
+                제목·본문 요약 등은 최대 {SUGGESTED_MAX}자를 넘기지 않도록 해
+                주세요.
               </span>
               <span
                 id="textarea-count"

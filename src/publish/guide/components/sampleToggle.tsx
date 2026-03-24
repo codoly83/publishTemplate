@@ -1,6 +1,6 @@
 import { Switch } from "@/components/ui";
 import { useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleSwitchPage() {
   const [enabled, setEnabled] = useState(true);

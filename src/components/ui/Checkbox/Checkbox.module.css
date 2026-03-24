@@ -10,7 +10,7 @@
 
 .checkboxField {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   cursor: pointer;
 }
@@ -44,8 +44,11 @@
   border-radius: 9999px;
   background-color: var(--font-w);
   color: var(--font-g);
-  transition: border-color 150ms ease, background-color 150ms ease,
-    color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover {
     background-color: var(--bg-box);
@@ -103,8 +106,11 @@
   color: transparent;
   outline: none;
   cursor: pointer;
-  transition: border-color 150ms ease, background-color 150ms ease,
-    color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover {
     border-color: var(--btn-g);
@@ -279,6 +285,9 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
 
   &VariantBtn {
     color: currentColor;

@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import type { ReactNode, RefObject } from "react";
 import { DndProvider } from "react-dnd";
 import { MultiBackend, getBackendOptions } from "@minoru/react-dnd-treeview";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 import { TreeView } from "@/components/ui";
 import {
   Check,

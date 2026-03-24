@@ -6,7 +6,7 @@
 
 .radioField {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   cursor: pointer;
 }
@@ -28,8 +28,11 @@
   color: transparent;
   outline: none;
   cursor: pointer;
-  transition: border-color 150ms ease, background-color 150ms ease,
-    color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover {
     border-color: var(--font-b);
@@ -95,6 +98,9 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .radioFieldDisabled .radioLabel {

@@ -1,5 +1,5 @@
 import { InputStepper } from "@/components/ui";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleInputStepperPage() {
   return (
@@ -36,7 +36,7 @@ function SampleInputStepperPage() {
 
         <GuideBox
           title="숫자 · &lt; &gt; (chevron)"
-          description="stepperVariant=&quot;chevron&quot;일 때 날짜 피커와 같은 좌우 화살표 아이콘을 씁니다."
+          description='stepperVariant="chevron"일 때 날짜 피커와 같은 좌우 화살표 아이콘을 씁니다.'
           code={`
 <div className="grid max-w-3xl gap-6 md:grid-cols-2">
   <div className="flex flex-col gap-2">
@@ -66,7 +66,7 @@ function SampleInputStepperPage() {
 
         <GuideBox
           title="날짜 · + / − 및 chevron"
-          description="mode=&quot;date&quot;는 type=date 입력과 동일하며, step은 일(day) 단위입니다."
+          description='mode="date"는 type=date 입력과 동일하며, step은 일(day) 단위입니다.'
           code={`
 <div className="grid max-w-3xl gap-6 md:grid-cols-2">
   <div className="flex flex-col gap-2">
@@ -208,7 +208,9 @@ function SampleInputStepperPage() {
                   <InputStepper defaultValue="7" min={0} max={10} readOnly />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="text-sm text-font-g">error (aria-invalid)</div>
+                  <div className="text-sm text-font-g">
+                    error (aria-invalid)
+                  </div>
                   <InputStepper
                     defaultValue="-1"
                     min={0}
@@ -251,7 +253,9 @@ function SampleInputStepperPage() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="text-sm text-font-g">error (aria-invalid)</div>
+                  <div className="text-sm text-font-g">
+                    error (aria-invalid)
+                  </div>
                   <InputStepper
                     mode="date"
                     defaultValue="2024-06-01"

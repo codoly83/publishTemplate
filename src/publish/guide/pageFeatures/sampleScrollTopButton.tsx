@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui";
 import { useEffect, useRef, useState } from "react";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 const SHOW_THRESHOLD_PX = 180;
 

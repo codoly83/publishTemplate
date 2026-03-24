@@ -10,7 +10,7 @@ import {
   collapsibleChevronClassName,
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
-import { GuideBox } from "./GuideBox";
+import { GuideBox } from "@/publish/guide/GuideBox";
 
 function SampleCollapsiblePage() {
   const [controlledOpen, setControlledOpen] = React.useState(false);
@@ -50,15 +50,15 @@ import {
               />
             </CollapsibleTrigger>
             <CollapsibleContent>
-              접었다 펼칠 수 있는 본문입니다. 필터 패널, FAQ 한 줄, 부가 설명 등에
-              쓰기 좋습니다.
+              접었다 펼칠 수 있는 본문입니다. 필터 패널, FAQ 한 줄, 부가 설명
+              등에 쓰기 좋습니다.
             </CollapsibleContent>
           </Collapsible>
         </GuideBox>
 
         <GuideBox
           title="CollapsibleGroup — 한 번에 하나만 열림 (single)"
-          description="Accordion의 type=&quot;single&quot;과 같습니다. 다른 패널을 열면 이전 패널은 닫힙니다. collapsible={false}이면 열린 항목을 다시 눌러도 닫히지 않습니다."
+          description='Accordion의 type="single"과 같습니다. 다른 패널을 열면 이전 패널은 닫힙니다. collapsible={false}이면 열린 항목을 다시 눌러도 닫히지 않습니다.'
           code={`
 <CollapsibleGroup type="single" defaultValue="a" className="w-full max-w-md">
   <Collapsible value="a">
@@ -72,7 +72,11 @@ import {
 </CollapsibleGroup>
           `}
         >
-          <CollapsibleGroup type="single" defaultValue="a" className="w-full max-w-md">
+          <CollapsibleGroup
+            type="single"
+            defaultValue="a"
+            className="w-full max-w-md"
+          >
             <Collapsible value="a">
               <CollapsibleTrigger>
                 <span>첫 번째 패널</span>
@@ -82,7 +86,8 @@ import {
                 />
               </CollapsibleTrigger>
               <CollapsibleContent>
-                한 번에 하나만 열립니다. 다른 트리거를 누르면 이 패널은 닫힙니다.
+                한 번에 하나만 열립니다. 다른 트리거를 누르면 이 패널은
+                닫힙니다.
               </CollapsibleContent>
             </Collapsible>
             <Collapsible value="b">
@@ -110,7 +115,7 @@ import {
 
         <GuideBox
           title="CollapsibleGroup — 여러 개 동시에 열림 (multiple)"
-          description="Accordion의 type=&quot;multiple&quot;과 같습니다. 각 패널의 열림 상태가 독립적으로 유지됩니다."
+          description='Accordion의 type="multiple"과 같습니다. 각 패널의 열림 상태가 독립적으로 유지됩니다.'
           code={`
 <CollapsibleGroup type="multiple" defaultValue={["x"]} className="w-full max-w-md">
   <Collapsible value="x">...</Collapsible>
@@ -170,8 +175,8 @@ import {
               />
             </CollapsibleTrigger>
             <CollapsibleContent>
-              처음부터 보이는 내용입니다. 사용자가 먼저 봐야 하는 안내나 약관 요약에
-              활용할 수 있습니다.
+              처음부터 보이는 내용입니다. 사용자가 먼저 봐야 하는 안내나 약관
+              요약에 활용할 수 있습니다.
             </CollapsibleContent>
           </Collapsible>
         </GuideBox>
