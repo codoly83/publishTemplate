@@ -66,6 +66,14 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "chart",
+    title: "Chart",
+    path: "/guide/chart",
+    description:
+      "Recharts 기반 Line/Area/Bar/Pie/Radar 차트를 공통 컴포넌트로 사용합니다.",
+    section: "components",
+  },
+  {
     id: "checkbox",
     title: "Checkbox",
     path: "/guide/checkbox",

@@ -27,7 +27,7 @@ function SampleTailwindStrategyPage() {
           description="재사용성과 유지보수가 중요한 경우 SCSS를 우선합니다."
           code={`
 /* Button.scss */
-.button {
+.buttonBase {
   display: inline-flex;
   align-items: center;
   border-radius: 8px;
@@ -35,7 +35,7 @@ function SampleTailwindStrategyPage() {
   height: 40px;
 }
 
-.button--primary {
+.buttonPrimary {
   background: var(--primary);
   color: var(--font-w);
 }

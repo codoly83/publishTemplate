@@ -29,6 +29,7 @@ import SampleSelectPage from "@/publish/guide/components/sampleSelect";
 import SampleSwitchPage from "@/publish/guide/components/sampleToggle";
 import SampleButtonPage from "@/publish/guide/components/sampleButton";
 import SampleCardPage from "@/publish/guide/components/sampleCard";
+import SampleChartPage from "@/publish/guide/components/sampleChart";
 import SampleTablePage from "@/publish/guide/components/sampleTable";
 import SampleTabsPage from "@/publish/guide/components/sampleTabs";
 import SampleAlertDialogPage from "@/publish/guide/components/sampleAlertDialog";
@@ -153,6 +154,11 @@ export const routes = [
         path: "card",
         element: <SampleCardPage />,
         handle: { title: getGuideChildTitle("card") },
+      },
+      {
+        path: "chart",
+        element: <SampleChartPage />,
+        handle: { title: getGuideChildTitle("chart") },
       },
       {
         path: "alert-dialog",

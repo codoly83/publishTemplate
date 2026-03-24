@@ -227,3 +227,19 @@ export type {
   SwiperRef,
   SwiperSlideProps,
 } from "./SwiperCustom/SwiperCustom";
+export {
+  ChartArea,
+  ChartBar,
+  ChartContainer,
+  ChartLine,
+  ChartPie,
+  ChartRadar,
+} from "./Chart/Chart";
+export type {
+  ChartAreaProps,
+  ChartBarProps,
+  ChartLineProps,
+  ChartPieProps,
+  ChartRadarProps,
+  ChartSeries,
+} from "./Chart/Chart";
