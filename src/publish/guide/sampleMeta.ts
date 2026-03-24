@@ -7,6 +7,7 @@ export interface PublishSampleItem {
 
 /** 가이드 사이드바 섹션 구분 */
 export type GuideNavSectionId =
+  | "basic"
   | "layout"
   | "pageFeatures"
   | "hooks"
@@ -28,6 +29,7 @@ export const GUIDE_NAV_SECTIONS: {
   id: GuideNavSectionId;
   label: string;
 }[] = [
+  { id: "basic", label: "기본설정" },
   { id: "layout", label: "layout 컴포넌트" },
   { id: "pageFeatures", label: "페이지 기능 샘플" },
   { id: "hooks", label: "hooks" },
@@ -94,11 +96,47 @@ const guideNavComponentItems: PublishGuideNavItem[] = [
     section: "components",
   },
   {
+    id: "base",
+    title: "Base",
+    path: "/guide/base",
+    description: "퍼블리싱 가이드에서 공통으로 사용할 기본 원칙 모음입니다.",
+    section: "basic",
+  },
+  {
+    id: "tailwindStrategy",
+    title: "TailwindCSS 전략",
+    path: "/guide/tailwind-strategy",
+    description:
+      "컴포넌트 SCSS와 Tailwind 유틸리티 클래스를 혼용하는 기준을 정리합니다.",
+    section: "basic",
+  },
+  {
+    id: "namingConvention",
+    title: "약속어(camelCase)",
+    path: "/guide/naming-convention",
+    description: "가장 보편적인 camelCase 중심 네이밍 약속을 정리합니다.",
+    section: "basic",
+  },
+  {
     id: "font",
     title: "Font",
     path: "/guide/font",
     description: "Font 사이즈 두께 조합 샘플을 비교합니다.",
-    section: "components",
+    section: "basic",
+  },
+  {
+    id: "color",
+    title: "Color",
+    path: "/guide/color",
+    description: "_color.css 토큰 기반 컬러 팔레트 샘플입니다.",
+    section: "basic",
+  },
+  {
+    id: "folderStructure",
+    title: "폴더구조",
+    path: "/guide/folder-structure",
+    description: "프로젝트 기본 폴더 구조와 파일 배치 기준 샘플입니다.",
+    section: "basic",
   },
   {
     id: "icon",

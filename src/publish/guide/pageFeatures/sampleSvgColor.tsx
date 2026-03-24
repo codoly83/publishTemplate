@@ -102,13 +102,13 @@ import closeCircleSvgUrl from "@/assets/icons/close-circle.svg";
 
         <GuideBox
           title="SCSS mixin 방식 (재사용)"
-          description="SCSS에서 아이콘 마스크 속성을 mixin으로 공통화하고, 색상은 CSS 변수(`--svg-color`)로 변경하는 패턴입니다."
+          description="SCSS에서 아이콘 마스크 속성을 mixin으로 공통화하고, 3번째 인자(배경색)로 색상을 주입하는 패턴입니다."
           code={`
 // src/assets/styles/_mixin.scss
-@mixin svg-mask-icon($svg-url, $size: 48px) {
+@mixin svg-mask-icon($svg-url, $size: 48px, $bg-color: var(--svg-color, #7a8599)) {
   width: $size;
   height: $size;
-  background-color: var(--svg-color, #7a8599);
+  background-color: $bg-color;
   -webkit-mask-image: url($svg-url);
   mask-image: url($svg-url);
   -webkit-mask-repeat: no-repeat;
@@ -120,7 +120,7 @@ import closeCircleSvgUrl from "@/assets/icons/close-circle.svg";
 }
 
 .mixinMaskIcon {
-  @include svg-mask-icon("../icons/close-circle.svg", 48px);
+  @include svg-mask-icon("../icons/close-circle.svg", 48px, var(--svg-color, #7a8599));
 }
 
 // sampleSvgColor.tsx

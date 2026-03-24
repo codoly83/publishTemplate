@@ -1,0 +1,7 @@
+.mixinMaskIcon {
+  @include svg-mask-icon("../icons/close-circle.svg", 48px, #7a8599);
+}
+
+.mixinMaskIconPrimary {
+  @include svg-mask-icon("../icons/close-circle.svg", 20px, var(--primary));
+}

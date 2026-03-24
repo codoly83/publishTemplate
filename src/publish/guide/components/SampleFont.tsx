@@ -31,7 +31,12 @@ function SampleFontPage() {
                     {/* 실제 폰트 적용 영역 */}
                     <p
                       className="text-font-b"
-                      style={{ fontSize: size, fontWeight: weight }}
+                      style={{
+                        fontFamily:
+                          "Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                        fontSize: size,
+                        fontWeight: weight,
+                      }}
                     >
                       Pretendard 프리텐다드
                     </p>

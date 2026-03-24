@@ -1,7 +1,7 @@
-@mixin svg-mask-icon($svg-url, $size: 48px) {
+@mixin svg-mask-icon($svg-url, $size: 48px, $bg-color: var(--bg-black)) {
   width: $size;
   height: $size;
-  background-color: var(--svg-color, #7a8599);
+  background-color: $bg-color;
   -webkit-mask-image: url($svg-url);
   mask-image: url($svg-url);
   -webkit-mask-repeat: no-repeat;
@@ -10,8 +10,4 @@
   mask-position: center;
   -webkit-mask-size: contain;
   mask-size: contain;
-}
-
-.mixinMaskIcon {
-  @include svg-mask-icon("../icons/close-circle.svg", 48px);
 }

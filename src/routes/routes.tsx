@@ -33,7 +33,12 @@ import SampleTablePage from "@/publish/guide/components/sampleTable";
 import SampleTabsPage from "@/publish/guide/components/sampleTabs";
 import SampleAlertDialogPage from "@/publish/guide/components/sampleAlertDialog";
 import SamplePortalPage from "@/publish/guide/components/samplePortal";
+import SampleBasePage from "@/publish/guide/components/sampleBase";
+import SampleNamingConventionPage from "@/publish/guide/components/sampleNamingConvention";
+import SampleTailwindStrategyPage from "@/publish/guide/components/sampleTailwindStrategy";
 import SampleFontPage from "@/publish/guide/components/SampleFont";
+import SampleColorPage from "@/publish/guide/components/SampleColor";
+import SampleFolderStructurePage from "@/publish/guide/components/sampleFolderStructure";
 import SampleUseHtmlRootClass from "@/publish/guide/hooks/sampleUseHtmlRootClass";
 import SampleUseHtmlTag from "@/publish/guide/hooks/sampleUseHtmlTag";
 import SampleUseLayoutClass from "@/publish/guide/hooks/sampleUseLayoutClass";
@@ -250,9 +255,34 @@ export const routes = [
         handle: { title: getGuideChildTitle("portal") },
       },
       {
+        path: "base",
+        element: <SampleBasePage />,
+        handle: { title: getGuideChildTitle("base") },
+      },
+      {
+        path: "tailwind-strategy",
+        element: <SampleTailwindStrategyPage />,
+        handle: { title: getGuideChildTitle("tailwind-strategy") },
+      },
+      {
+        path: "naming-convention",
+        element: <SampleNamingConventionPage />,
+        handle: { title: getGuideChildTitle("naming-convention") },
+      },
+      {
         path: "font",
         element: <SampleFontPage />,
         handle: { title: getGuideChildTitle("font") },
+      },
+      {
+        path: "color",
+        element: <SampleColorPage />,
+        handle: { title: getGuideChildTitle("color") },
+      },
+      {
+        path: "folder-structure",
+        element: <SampleFolderStructurePage />,
+        handle: { title: getGuideChildTitle("folder-structure") },
       },
       {
         path: "hooks",

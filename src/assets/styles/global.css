@@ -7,3 +7,5 @@
 @import "./_base.css";
 @import "./_layout.css";
 @import "./_mixin.scss";
+@import "./common.scss";
+@import "./contents.scss";
