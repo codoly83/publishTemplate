@@ -1,6 +1,6 @@
 import { useLayoutClass } from "@/hooks/useLayoutClass";
 import { Button, Card, CardContent, CardHeader, CardTitle, Checkbox, Input } from "@/components/ui";
-import { FormEvent, useState } from "react";
+import { useState, type FormEvent } from "react";
 
 function Login() {
   useLayoutClass("type2");

@@ -44,6 +44,10 @@ type ChartLineProps<T extends Record<string, unknown>> = {
   yDomain?: [number, number] | ["auto", "auto"];
 };
 
+// Recharts can't resolve its TypedDataKey<T> for an unresolved generic T,
+// so widen our (already type-checked) key to a plain string at the boundary.
+const asDataKey = <T,>(key: keyof T & string): string => key;
+
 type ChartAreaProps<T extends Record<string, unknown>> = ChartLineProps<T>;
 
 type ChartBarProps<T extends Record<string, unknown>> = {
@@ -108,7 +112,7 @@ function ChartLine<T extends Record<string, unknown>>({
     <ChartContainer height={height}>
       <LineChart data={data}>
         {showGrid ? <CartesianGrid strokeDasharray="3 3" /> : null}
-        <XAxis dataKey={xKey} />
+        <XAxis dataKey={asDataKey<T>(xKey)} />
         <YAxis domain={yDomain} />
         <Tooltip />
         {showLegend ? <Legend /> : null}
@@ -141,7 +145,7 @@ function ChartArea<T extends Record<string, unknown>>({
     <ChartContainer height={height}>
       <AreaChart data={data}>
         {showGrid ? <CartesianGrid strokeDasharray="3 3" /> : null}
-        <XAxis dataKey={xKey} />
+        <XAxis dataKey={asDataKey<T>(xKey)} />
         <YAxis domain={yDomain} />
         <Tooltip />
         {showLegend ? <Legend /> : null}
@@ -173,7 +177,7 @@ function ChartBar<T extends Record<string, unknown>>({
     <ChartContainer height={height}>
       <BarChart data={data}>
         {showGrid ? <CartesianGrid strokeDasharray="3 3" /> : null}
-        <XAxis dataKey={xKey} />
+        <XAxis dataKey={asDataKey<T>(xKey)} />
         <YAxis />
         <Tooltip />
         {showLegend ? <Legend /> : null}
@@ -230,7 +234,7 @@ function ChartRadar<T extends Record<string, unknown>>({
     <ChartContainer height={height}>
       <RadarChart data={data}>
         <PolarGrid />
-        <PolarAngleAxis dataKey={angleKey} />
+        <PolarAngleAxis dataKey={asDataKey<T>(angleKey)} />
         <Tooltip />
         {showLegend ? <Legend /> : null}
         {series.map((item) => (

@@ -3,7 +3,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import styles from "./Table.module.css";
-import { ScrollArea } from "../ScrollArea/ScrollArea";
 
 const tableVariants = cva(styles.tableContainer, {
   variants: {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { GuideBox } from "@/publish/guide/GuideBox";
 import ArrowDownSvg from "@/assets/icons/arrow-down.svg?react";
 import closeCircleSvgUrl from "@/assets/icons/close-circle.svg";
@@ -133,7 +133,7 @@ import closeCircleSvgUrl from "@/assets/icons/close-circle.svg";
           <div className="flex items-center gap-4">
             <div
               className="mixinMaskIcon"
-              style={{ ["--svg-color" as "--svg-color"]: mixinColor }}
+              style={{ "--svg-color": mixinColor } as CSSProperties}
             />
             <div className="text-sm text-font-b">현재 색상: {mixinColor}</div>
           </div>

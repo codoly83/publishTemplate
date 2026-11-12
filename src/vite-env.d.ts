@@ -14,6 +14,11 @@ interface ImportMetaEnv {
   readonly VITE_MSW?: string;
 }
 
+// Swiper ships its styles as package subpath exports ("swiper/css", ...),
+// which TS can't resolve to a module under noUncheckedSideEffectImports.
+declare module "swiper/css";
+declare module "swiper/css/*";
+
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }

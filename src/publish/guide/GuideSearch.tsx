@@ -198,7 +198,8 @@ function GuideSearch({ items }: { items: PublishGuideNavItem[] }) {
         } catch {
           /* ignore */
         }
-        const url = `${window.location.origin}${item.path}${hash}`;
+        const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+        const url = `${window.location.origin}${base}${item.path}${hash}`;
         window.open(url, "_blank", "noopener,noreferrer");
       } else {
         navigate(

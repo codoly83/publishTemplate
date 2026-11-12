@@ -6,6 +6,10 @@ import styles from "./Radio.module.css";
 
 type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root>;
 type RadioItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item>;
+// Inside <Radio value="..."> the item inherits `value` from context, so it is optional here.
+type RadioItemOwnProps = Omit<RadioItemProps, "value"> & {
+  value?: RadioItemProps["value"];
+};
 
 type RadioProps = RadioItemProps & {
   label?: React.ReactNode;
@@ -34,8 +38,8 @@ function RadioGroup({ className, ...props }: RadioGroupProps) {
 
 const RadioItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  RadioItemProps
->(({ className, ...props }, ref) => {
+  RadioItemOwnProps
+>(({ className, value, ...props }, ref) => {
   const context = React.useContext(RadioContext);
   const itemProps = context?.itemProps;
 
@@ -46,6 +50,7 @@ const RadioItem = React.forwardRef<
       className={cn(styles.radioItem, context?.itemClassName, className)}
       {...itemProps}
       {...props}
+      value={value ?? itemProps?.value ?? ""}
     >
       <RadioGroupPrimitive.Indicator
         data-slot="radio-indicator"
